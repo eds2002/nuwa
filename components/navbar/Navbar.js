@@ -30,7 +30,7 @@ export default function Navbar(){
             <Hamburger><FontAwesomeIcon icon = {faBars}/></Hamburger>
           </Right>
         </Nav>
-        <MobileNav>
+        {/* <MobileNav>
           <Panel>
             <Top>
               <Link href = "#">
@@ -53,7 +53,7 @@ export default function Navbar(){
               </Link>
             </MiddleMobile>
           </Panel>
-        </MobileNav>
+        </MobileNav> */}
       </Main>
     </Container>
   )
@@ -142,7 +142,7 @@ h-full
 `
 
 const IconsContainer = tw.div`
-items-center justify-center gap-x-6
+items-center justify-center gap-x-2
 hidden
 sm:flex
 `

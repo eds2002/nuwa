@@ -2,6 +2,10 @@ import tw from "twin.macro"
 import { navigation } from "./footer.data"
 import Link from "next/link"
 import Image from "next/image"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faPhone } from "@fortawesome/free-solid-svg-icons"
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons"
+import { faMapPin } from "@fortawesome/free-solid-svg-icons"
 
 export default function Footer(){
   return (
@@ -18,13 +22,24 @@ export default function Footer(){
             <Slogan>
               Making the world a better place through constructing elegant hierarchies.
             </Slogan>
-            <SocialLinks>
-              {navigation.social.map((item) => (
-                <a key={item.name} href={item.href} className="text-gray-400 hover:text-gray-500">
-                  <item.icon className="w-6 h-6" aria-hidden="true" />
-                </a>
-              ))}
-            </SocialLinks>
+            <Number>
+              <Icon>
+                <FontAwesomeIcon icon = {faPhone}/>
+              </Icon>
+              <a href={'tel:+51 944 900 077'}>+51 944 900 077</a>
+            </Number>
+            <Email>
+              <Icon>
+                <FontAwesomeIcon icon = {faEnvelope}/>
+              </Icon>
+              <a href = "mailto:nuwainnovacionestetica@gmail.com">nuwainnovacionestetica@gmail.com</a>
+            </Email>
+            <Location>
+              <Icon>
+                <FontAwesomeIcon icon = {faMapPin}/>
+              </Icon>
+              <a href = "https://www.google.com/maps/place/C.C.+LOS+DELFINES/@-12.0311659,-77.0874801,17z/data=!3m1!4b1!4m5!3m4!1s0x9105ceb9f672c5bd:0x400b89e662a7fd51!8m2!3d-12.0311659!4d-77.0852914" target="_blank">Av Perú 3469, "Galería los Delfines", segundo nivel Nro 58-59-60-61 , Lima, Peru</a>
+            </Location>
           </CompanyInfo>
           <LinkHeadings>
             <GridColOne>
@@ -89,6 +104,28 @@ export default function Footer(){
   )
 }
 
+const Icon = tw.span``
+
+const Number = tw.p`
+mt-5
+text-sm
+flex items-center justify-start gap-x-3
+text-gray-500
+`
+const Email = tw.p`
+mt-5
+text-sm
+flex items-center justify-start gap-x-3
+text-gray-500
+`
+const Location = tw.p`
+mt-5
+text-sm
+flex items-center justify-start gap-x-3
+text-gray-500
+max-w-xs
+`
+
 const SR = tw.span`
 sr-only
 `
@@ -152,6 +189,5 @@ const Grid = tw.div`
 xl:grid xl:grid-cols-3 xl:gap-8
 `
 
-const CompanyInfo = tw.div`
-space-y-8 xl:col-span-1
+const CompanyInfo = tw.div`xl:col-span-1
 `
