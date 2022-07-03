@@ -40,21 +40,28 @@ text-white
 `
 
 const Paragraph = tw.p`
-text-4xl
 text-center
 max-w-3xl
-mt-4
-text-white
+mt-4 text-white
+md:text-5xl
+text-3xl
 font-bold
+tracking-tight
 `
 
 const Button = tw.button`
-bg-[#E1B594]
-font-medium
-text-sm
+sm:py-3
 py-2
-px-8
-rounded-sm
+text-base
+tracking-wide
+bg-[#E1B594]
+rounded-md
 text-white
-my-5
+font-medium
+w-[200px]
+mt-7
+transition
+border-2
+hover:bg-[#e1b59461]
+border-[#E1B594]
 `

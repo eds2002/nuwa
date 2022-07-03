@@ -8,10 +8,9 @@ export default function Home() {
     <>
       <Hero/>
       <About/>
-      <Treatments/>
+      <Treatments limit = {3}/>
       <Cta/>
       <Footer/>
     </>
   )
 }
-

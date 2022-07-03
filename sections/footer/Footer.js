@@ -20,7 +20,7 @@ export default function Footer(){
               Nüwa // Logo
             </div>
             <Slogan>
-              Making the world a better place through constructing elegant hierarchies.
+              Especialistas en tratamientos faciales y corporales. Trabajamos para resaltar tu belleza.
             </Slogan>
             <Number>
               <Icon>
@@ -107,22 +107,28 @@ export default function Footer(){
 const Icon = tw.span``
 
 const Number = tw.p`
-mt-5
+mt-3
 text-sm
 flex items-center justify-start gap-x-3
-text-gray-500
+text-gray-400
+hover:text-gray-700
+transition
 `
 const Email = tw.p`
-mt-5
+mt-3
 text-sm
 flex items-center justify-start gap-x-3
-text-gray-500
+text-gray-400
+hover:text-gray-700
+transition
 `
 const Location = tw.p`
-mt-5
+mt-3
 text-sm
 flex items-center justify-start gap-x-3
-text-gray-500
+text-gray-400
+hover:text-gray-700
+transition
 max-w-xs
 `
 

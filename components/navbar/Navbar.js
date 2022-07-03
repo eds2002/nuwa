@@ -17,7 +17,7 @@ export default function Navbar(){
             </IconsContainer>
           </Left>
           <Middle>
-            <Link href = "#">
+            <Link href = "/">
               <Logo>Nüwa</Logo>
             </Link>
           </Middle>
@@ -182,7 +182,7 @@ flex items-center justify-center
 const Logo = tw.h1`
 text-2xl
 font-medium
-text-[#EEE1D0]
+text-white
 cursor-pointer
 `
 

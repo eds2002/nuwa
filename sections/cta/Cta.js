@@ -37,7 +37,11 @@ font-bold
 `
 
 const CallToAction = tw.p`
-text-4xl
+mt-4 text-white
+md:text-5xl
+text-3xl
+font-bold
+tracking-tight
 text-center
 max-w-3xl
 `
@@ -47,13 +51,18 @@ text-xl
 text-gray-600
 `
 const Button = tw.button`
+sm:py-3
+py-2
+text-base
+tracking-wide
 bg-[#E1B594]
-font-medium
-text-sm
-py-3
-px-8
-rounded-sm
+rounded-md
 text-white
-my-6
+font-medium
 w-[200px]
+mt-7
+transition
+border-2
+hover:bg-[#e1b59461]
+border-[#E1B594]
 `
