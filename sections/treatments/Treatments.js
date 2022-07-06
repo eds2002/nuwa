@@ -1,8 +1,11 @@
 import tw, { styled,css } from "twin.macro"
 import {features} from "./treatments.data"
 import Link from "next/link"
+import { urlFor } from "../../sanity"
+import { string_to_slug } from "../../utils/slugify"
 
-export default function Treatments({textHidden, limit}) {
+export default function Treatments({textHidden, limit, treatments}) {
+  console.log("yuo",treatments)
   return (
     <Container>
       <SectionText textHidden = {textHidden}>
@@ -13,24 +16,24 @@ export default function Treatments({textHidden, limit}) {
       </SectionText>
 
       <Features>
-        {features.map((feature, featureIdx) => (
+        {treatments.map((treatment, featureIdx) => (
           <>
             {/* TODO// If there is a limit present display only the limit amount */}
             {limit ? 
               <>
               {featureIdx <= limit-1 && (
-                <FeatureContainer key={feature.name}>
+                <FeatureContainer key={treatment.id}>
                   <FeatureText position = {featureIdx % 2 === 0 ? 'true' : 'false'}
                       // featureIdx % 2 === 0 ? 'lg:col-start-1' : 'lg:col-start-8 xl:col-start-9',
                       // 'mt-6 lg:mt-0 lg:row-start-1 lg:col-span-5 xl:col-span-4'
                   >
-                    <FeatureH3>{feature.name}</FeatureH3>
-                    <FeatureP>{feature.description}</FeatureP>
+                    <FeatureH3>{treatment.treatmentName}</FeatureH3>
+                    <FeatureP>{treatment.shortTreatmentDesc}</FeatureP>
                     <ButtonsWrapper>
-                      <Link href = "#">
+                      <Link href = {`/tratamientos/${string_to_slug(treatment.treatmentName)}`}>
                         <Appointment>Sacar Cita</Appointment>
                       </Link>
-                      <Link href = "#">
+                      <Link href = "/tratamientos/${treatmentName}">
                         <LearnMore>Aprende Más</LearnMore>
                       </Link>
                     </ButtonsWrapper>
@@ -38,7 +41,14 @@ export default function Treatments({textHidden, limit}) {
                   {/* <p>{featureIdx % 2 === 0 ? 'true': 'false'}</p> */}
                   <FeatureImgContainer position = {featureIdx % 2 === 0 ? 'true' : 'false'}>
                     <FeatureImgWrapper>
-                      <FeatureImg src={feature.imageSrc} alt={feature.imageAlt} />
+                      <p>{treatment.treatmentImage?.asset?._ref}</p>
+                      <p>{treatment.treatmentImage?.asset ? 'true':'false'}</p>
+                      {treatment.treatmentImage?.asset ? 
+
+                      <FeatureImg src={urlFor(treatment.treatmentImage.asset._ref)} alt={treatment.treatmentImage?.alt} />
+                      :
+                      <FeatureImg src={"https://images.pexels.com/photos/9496596/pexels-photo-9496596.jpeg?cs=srgb&dl=pexels-brett-jordan-9496596.jpg&fm=jpg"} alt="Error" />
+                      }
                     </FeatureImgWrapper>
                   </FeatureImgContainer>
                 </FeatureContainer>
@@ -46,18 +56,18 @@ export default function Treatments({textHidden, limit}) {
               </>
             :
               <>
-              <FeatureContainer key={feature.name}>
+              <FeatureContainer key={treatment.id}>
                 <FeatureText position = {featureIdx % 2 === 0 ? 'true' : 'false'}
                     // featureIdx % 2 === 0 ? 'lg:col-start-1' : 'lg:col-start-8 xl:col-start-9',
                     // 'mt-6 lg:mt-0 lg:row-start-1 lg:col-span-5 xl:col-span-4'
                 >
-                  <FeatureH3>{feature.name}</FeatureH3>
-                  <FeatureP>{feature.description}</FeatureP>
+                  <FeatureH3>{treatment.treatmentName}</FeatureH3>
+                  <FeatureP>{treatment.shortTreatmentDesc}</FeatureP>
                   <ButtonsWrapper>
-                      <Link href = "#">
+                      <Link href = {`/tratamientos/${treatmentName}`}>
                         <Appointment>Sacar Cita</Appointment>
                       </Link>
-                      <Link href = "#">
+                      <Link href = "/tratamientos/${treatmentName}">
                         <LearnMore>Aprende Más</LearnMore>
                       </Link>
                     </ButtonsWrapper>
@@ -65,7 +75,7 @@ export default function Treatments({textHidden, limit}) {
                 {/* <p>{featureIdx % 2 === 0 ? 'true': 'false'}</p> */}
                 <FeatureImgContainer position = {featureIdx % 2 === 0 ? 'true' : 'false'}>
                   <FeatureImgWrapper>
-                    <FeatureImg src={feature.imageSrc} alt={feature.imageAlt} />
+                    <FeatureImg src={treatment.treatmentImage.asset?._ref} alt={treatment.treatmentImage.alt} />
                   </FeatureImgWrapper>
                 </FeatureImgContainer>
               </FeatureContainer>

@@ -1,7 +1,7 @@
 import { Navbar } from "../../components"
 import { Footer, Treatments } from "../../sections"
 import tw from "twin.macro"
-export default function TreatmentsPage(){
+export default function TreatmentsPage({treatments}){
   return (
     <>
       <Navbar/>
@@ -16,7 +16,7 @@ export default function TreatmentsPage(){
           </ImageContainer>
         </ImageWrapper>
       </TopHeader> */}
-      <Treatments textHidden/>
+      <Treatments textHidden treatments={treatments}/>
       <Footer/>
     </>
   )
@@ -53,4 +53,24 @@ const BackgroundOverlay = tw.div`absolute inset-0 bg-black/40 z-10`
 const Img = tw.img`
 object-cover object-center
 `
+
+export const getServerSideProps = async () =>{
+  const query = '*[ _type == "tratamientos"]';
+  const treatments = await sanityClient.fetch(query)
+
+  if(!treatments.length){
+    return {
+      props:{
+        treatments: [],
+      }
+    }
+  }else{
+    return {
+      props:{
+        treatments:treatments
+      }
+    }
+  }
+}
+
 
