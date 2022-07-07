@@ -41,11 +41,8 @@ export default function Treatments({textHidden, limit, treatments}) {
                   {/* <p>{featureIdx % 2 === 0 ? 'true': 'false'}</p> */}
                   <FeatureImgContainer position = {featureIdx % 2 === 0 ? 'true' : 'false'}>
                     <FeatureImgWrapper>
-                      <p>{treatment.treatmentImage?.asset?._ref}</p>
-                      <p>{treatment.treatmentImage?.asset ? 'true':'false'}</p>
-                      {treatment.treatmentImage?.asset ? 
-
-                      <FeatureImg src={urlFor(treatment.treatmentImage.asset._ref)} alt={treatment.treatmentImage?.alt} />
+                      {treatment.treatmentImages != undefined ? 
+                      <FeatureImg src={urlFor(treatment.treatmentImages.treatmentImage1.asset._ref)} alt={treatment.treatmentImage?.alt} />
                       :
                       <FeatureImg src={"https://images.pexels.com/photos/9496596/pexels-photo-9496596.jpeg?cs=srgb&dl=pexels-brett-jordan-9496596.jpg&fm=jpg"} alt="Error" />
                       }
@@ -57,10 +54,7 @@ export default function Treatments({textHidden, limit, treatments}) {
             :
               <>
               <FeatureContainer key={treatment.id}>
-                <FeatureText position = {featureIdx % 2 === 0 ? 'true' : 'false'}
-                    // featureIdx % 2 === 0 ? 'lg:col-start-1' : 'lg:col-start-8 xl:col-start-9',
-                    // 'mt-6 lg:mt-0 lg:row-start-1 lg:col-span-5 xl:col-span-4'
-                >
+                <FeatureText position = {featureIdx % 2 === 0 ? 'true' : 'false'}>
                   <FeatureH3>{treatment.treatmentName}</FeatureH3>
                   <FeatureP>{treatment.shortTreatmentDesc}</FeatureP>
                   <ButtonsWrapper>
@@ -72,7 +66,6 @@ export default function Treatments({textHidden, limit, treatments}) {
                       </Link>
                     </ButtonsWrapper>
                 </FeatureText>
-                {/* <p>{featureIdx % 2 === 0 ? 'true': 'false'}</p> */}
                 <FeatureImgContainer position = {featureIdx % 2 === 0 ? 'true' : 'false'}>
                   <FeatureImgWrapper>
                     <FeatureImg src={treatment.treatmentImage.asset?._ref} alt={treatment.treatmentImage.alt} />

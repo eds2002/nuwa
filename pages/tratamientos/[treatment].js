@@ -1,11 +1,20 @@
+import { useState } from "react";
 import { sanityClient } from "../../sanity";
 import tw from "twin.macro";
 import { Navbar } from "../../components";
 import { urlFor } from "../../sanity";
 import styled from 'styled-components'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendarAlt, faMobileAndroidAlt } from "@fortawesome/free-solid-svg-icons";
+import { Appointment } from "../../components";
 
-export default function treatment({treatment}){
-  console.log("bro",treatment)
+export default function PageTreatment({treatment,allTreatments}){
+  const [modal,setModal] = useState(false)
+
+  function changeModalStatus(state){
+    setModal(state)
+  }
+
   return (
     <>
       {treatment ? 
@@ -14,8 +23,8 @@ export default function treatment({treatment}){
         <Container>
           <Hero>
             <Heading>{treatment.treatmentName}</Heading>
-            {treatment.treatmentImage?.asset ? 
-            <Img src = {urlFor(treatment.treatmentImage.asset._ref)} alt = {treatment.treatmentImage.alt}/>
+            {treatment.treatmentImages != undefined ? 
+            <Img src = {urlFor(treatment.treatmentImages.treatmentImage1.asset._ref)} alt = {treatment.treatmentImages.treatmentImage1.alt}/>
             :
             <Img src={"https://images.pexels.com/photos/9496596/pexels-photo-9496596.jpeg?cs=srgb&dl=pexels-brett-jordan-9496596.jpg&fm=jpg"} alt="Error"/>
             }
@@ -25,17 +34,33 @@ export default function treatment({treatment}){
             <TreatmentDetails>
               <TextWrapper>
                 {treatment.longTreatmentDesc.map((p, index)=>(
-                  <Paragraph style = {p.style} key = {index}>{p.children[0].text}</Paragraph>
+                  <div key = {index}>
+                    {p.style === 'normal' &&
+                      <Normal key = {index}>{p.children[0].text}</Normal>
+                    }
+                    {p.style === 'h1' &&
+                      <H1 key = {index}>{p.children[0].text}</H1>
+                    }
+                    {p.style === 'h2' &&
+                      <H2 key = {index}>{p.children[0].text}</H2>
+                    }
+                    {p.style === 'h3' &&
+                      <H3 key = {index}>{p.children[0].text}</H3>
+                    }
+                  </div>
                 ))}
-                <Button>Sacar Cita</Button>
+                <Button onClick = {()=>setModal(!modal)}>
+                Sacar Cita
+                <FontAwesomeIcon icon = {faCalendarAlt}/>
+                </Button>
               </TextWrapper>
               <TreatmentImageContainer>
-                <TreatmentImage/>
-                asdf
+                <TreatmentImage src = {urlFor(treatment.treatmentImages.treatmentImage2.asset._ref)}/>
               </TreatmentImageContainer>
             </TreatmentDetails>
           </Wrapper>
         </Container>
+        {modal && (<Appointment changeModalStatus = {changeModalStatus} allTreatments = {allTreatments} currentTreatment = {treatment}/>)}
       </>  
       :
       <>
@@ -61,6 +86,7 @@ transition
 border-2
 hover:bg-[#e1b59461]
 border-[#E1B594]
+flex items-center justify-center gap-x-4
 `
 
 const Wrapper = tw.div`
@@ -70,11 +96,20 @@ flex items-center justify-center
 my-24
 `
 
-const Paragraph = styled.p`
-${({style})=> style === 'normal' && tw`my-4 text-base text-gray-700`}
-${({style})=> style === 'h1' && tw`my-4 text-6xl font-medium text-gray-800`}
-${({style})=> style === 'h2' && tw`my-4 text-5xl font-bold text-gray-900`}
-${({style})=> style === 'h3' && tw`my-4 text-4xl font-bold text-gray-900`}
+const Normal = tw.p`
+my-4 text-base text-gray-700
+`
+
+const H1 = tw.h1`
+my-4 text-6xl font-medium text-gray-800
+`
+
+const H2 = tw.h2`
+my-4 text-5xl font-bold text-gray-900
+`
+
+const H3 = tw.h3`
+my-4 text-4xl font-bold text-gray-900
 `
 
 
@@ -82,10 +117,11 @@ const TreatmentImageContainer = tw.div`
 flex-1
 h-full
 w-full
-bg-green-500
 `
 
-const TreatmentImage = tw.img``
+const TreatmentImage = tw.img`
+rounded-xl
+`
 
 const TextWrapper = tw.div`
 w-full
@@ -100,8 +136,9 @@ w-full
 max-w-7xl
 px-4
 mx-auto
-sm:flex-row
-flex-col
+md:flex-row
+flex-col-reverse
+gap-5
 `
 
 
@@ -157,6 +194,6 @@ export async function getServerSideProps({ params }) {
   }else{
     // TODO, requested page exists
     console.log('exists bro')
-    return {props:{treatment:treatments[requestedTreatment]}}
+    return {props:{treatment:treatments[requestedTreatment], allTreatments:treatments}}
   }
 }
