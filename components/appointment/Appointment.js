@@ -146,7 +146,7 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
                     {/* TODO, present only the first 2 inputs, these are the name inputs */}
                     {input.id <= 2 && (
                       <>
-                        <Input key = {input.id} {...input} value = {values[input.name]} onChange={onChange} className = "flex-1 px-3 py-2 text-sm border border-gray-400 rounded-md"/>
+                        <Input key = {input.id} {...input} value = {values[input.name]} onChange={onChange} className = "flex-1 w-full px-3 py-2 border border-gray-400 rounded-md text-smPageTreatment"/>
                       </>
                     )}
                   </>
@@ -177,7 +177,7 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
               <>
                 <Listbox.Label className="block mt-5 text-sm">Sede*</Listbox.Label>
                 <div className="relative mt-1">
-                  <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white border border-gray-400 rounded-md shadow-sm cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                  <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-sm text-left bg-white border border-gray-400 rounded-md shadow-sm cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
                     <span className="block truncate">{location.name}</span>
                   </Listbox.Button>
 
@@ -188,7 +188,7 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                   >
-                    <Listbox.Options className="absolute z-10 w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                    <Listbox.Options className="absolute z-10 w-full py-1 mt-1 overflow-auto text-sm bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none">
                       {people.map((person) => (
                         <Listbox.Option
                           key={person.id}
@@ -233,7 +233,7 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
               <>
                 <Listbox.Label className="block mt-5 text-sm">Tratamiento*</Listbox.Label>
                 <div className="relative mt-1">
-                  <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white border border-gray-400 rounded-md shadow-sm cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                  <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-sm text-left bg-white border border-gray-400 rounded-md shadow-sm cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
                     <span className="block truncate">{treatment}</span>
                   </Listbox.Button>
 
@@ -244,7 +244,7 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                   >
-                    <Listbox.Options className="absolute z-10 w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                    <Listbox.Options className="absolute z-10 w-full py-1 mt-1 overflow-auto text-sm bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none">
                       {allTreatments.map((treatment,index) => (
                         <Listbox.Option
                           key={index}
@@ -340,21 +340,6 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
 
 const Label = tw.p``
 
-const CustomInput = tw.input`
-border
-border-gray-400
-px-3
-py-2
-rounded-md
-text-sm
-`
-
-const PhoneLabel = tw.p``
-
-const PhoneInputWrapper = tw.div`
-
-`
-
 const CloseIcon = tw.span`
 h-full
 absolute
@@ -395,16 +380,6 @@ rounded-md
 p-2
 `
 
-const MessageLabel = tw.p`
-my-1
-`
-
-const Message = tw.div`
-mt-5
-text-sm
-`
-
-const TimeInput = tw.input``
 
 const DateInput = tw.input`
 w-full
@@ -423,60 +398,12 @@ flex
 `
 
 const Date = tw.div`
-w-[50%]
+sm:w-[50%]
+w-[75%]
 text-sm
 mt-5
 `
 
-const EmailInput = tw.input`
-w-full
-border
-border-gray-400
-px-3
-py-2
-rounded-md
-`
-
-const EmailInputWrapper = tw.div`
-
-`
-
-const EmailLabel = tw.p`
-`
-
-const Email = tw.div`
-text-sm
-mt-5
-`
-
-const PhoneInput = tw.input`
-w-full
-border
-border-gray-400
-px-3
-py-2
-rounded-md
-`
-
-const Phone = tw.div`
-mt-5
-text-sm
-`
-
-const NameLabel = tw.p`
-my-1
-`
-
-const Names = tw.div`w-full text-sm`
-
-const LastNameInput = tw.input`
-flex-1
-border
-border-gray-400
-px-3
-py-2
-rounded-md
-`
 const FirstNameInput = tw.input`
 flex-1
 border
@@ -486,9 +413,6 @@ px-2
 rounded-md
 `
 
-const NameInputWrapper = tw.div`
-flex items-center justify-center gap-x-3
-`
 
 const Form = tw.form`
 px-4
@@ -505,8 +429,8 @@ relative
 const Wrapper = tw.div`
 max-w-xl
 bg-white
-w-full
 h-full
+w-[90%]
 max-h-[93vh]
 rounded-xl
 p-6
