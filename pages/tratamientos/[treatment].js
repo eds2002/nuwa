@@ -16,7 +16,7 @@ export default function PageTreatment({treatment,allTreatments}){
   }
 
   return (
-    <>
+    <Section className = "overflow-hidden">
       {treatment ? 
       <>
         <Navbar/>
@@ -67,9 +67,11 @@ export default function PageTreatment({treatment,allTreatments}){
       cock eater
       </>
       }
-    </>
+    </Section>
   )
 }
+
+const Section = tw.section``
 
 const Button = tw.button`
 sm:py-3
@@ -91,9 +93,8 @@ flex items-center justify-center gap-x-4
 
 const Wrapper = tw.div`
 w-full
-h-[70vh]
 flex items-center justify-center
-my-24
+my-16
 `
 
 const Normal = tw.p`
@@ -101,7 +102,7 @@ my-4 text-base text-gray-700
 `
 
 const H1 = tw.h1`
-my-4 text-6xl font-medium text-gray-800
+my-4 text-4xl sm:text-5xl text-center sm:text-left md:text-6xl font-medium text-gray-800
 `
 
 const H2 = tw.h2`
@@ -146,12 +147,16 @@ const Heading = tw.h3`
 absolute
 text-white
 z-10
+font-medium
+tracking-tight
+text-3xl md:text-5xl lg:text-6xl
+text-center
 `
 
 const OverlayColor = tw.div`
 absolute
 inset-0
-bg-black/50
+bg-black/75
 `
 
 const Img = tw.img`
@@ -165,7 +170,7 @@ pointer-events-none
 const Hero = tw.div`
 relative
 w-full
-h-[30vh] md:h-[45vh]
+h-[40vh] md:h-[45vh]
 overflow-hidden
 flex items-center justify-center
 `

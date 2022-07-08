@@ -138,7 +138,7 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
         <Form onSubmit = {(e)=>handleSubmit(e)}>
           {/* Note to self, this logic is so confusing and unnecessary, when you get the chance, put all the inputs into their own component. */}
           {/* Names */}
-          <div className = "w-full mt-5 text-sm">
+          <div className = "w-full text-sm mt-7">
             <Label>Nombres*</Label>
             <div className = "flex items-center justify-between gap-x-3">
               {inputs.map(input=>(
@@ -155,13 +155,13 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
           </div>
 
           {/* Contact information */}
-          <div className = "mt-5 text-sm">
+          <div className = "text-sm mt-7">
               {/* TODO, handle focus state, better for user experience. An error message should not display if the user is 1: Focused on the input 2: User has refreshed the page */}
               {inputs.map(input=>(
                 <>
                   {input.id > 2 && input.id <= 4 ? 
                   <>
-                    <Label className = "mt-5">{input.label}</Label>
+                    <Label className = "mt-7">{input.label}</Label>
                     <Input key = {input.id} {...input} value = {values[input.name]} onChange={onChange} className = "w-full px-3 py-2 text-sm border border-gray-400 rounded-md"/>
                   </>
                   :
@@ -175,7 +175,7 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
           <Listbox value={location} onChange={setLocation}>
             {({ open }) => (
               <>
-                <Listbox.Label className="block mt-5 text-sm">Sede*</Listbox.Label>
+                <Listbox.Label className="block text-sm mt-7">Sede*</Listbox.Label>
                 <div className="relative mt-1">
                   <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-sm text-left bg-white border border-gray-400 rounded-md shadow-sm cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
                     <span className="block truncate">{location.name}</span>
@@ -231,7 +231,7 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
           <Listbox value={treatment} onChange={setTreatment}>
             {({ open }) => (
               <>
-                <Listbox.Label className="block mt-5 text-sm">Tratamiento*</Listbox.Label>
+                <Listbox.Label className="block text-sm mt-7">Tratamiento*</Listbox.Label>
                 <div className="relative mt-1">
                   <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-sm text-left bg-white border border-gray-400 rounded-md shadow-sm cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
                     <span className="block truncate">{treatment}</span>
@@ -327,7 +327,7 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
           </Date>
 
           {/* Messages */}
-          <div className="mt-5 text-sm">
+          <div className="text-sm mt-7">
             <Label>Mensaje</Label>
             <TextBox placeholder = "Si tienes alguna consulta, no dudes en llenar esta campo."></TextBox>
           </div>
@@ -373,7 +373,7 @@ border-[#E1B594]
 const TextBox = tw.textarea`
 resize-none
 w-full
-h-24
+h-32
 border
 border-gray-400
 rounded-md
@@ -401,7 +401,7 @@ const Date = tw.div`
 sm:w-[50%]
 w-[75%]
 text-sm
-mt-5
+mt-7
 `
 
 const FirstNameInput = tw.input`
@@ -434,6 +434,7 @@ w-[90%]
 max-h-[93vh]
 rounded-xl
 p-6
+overflow-scroll
 `
 
 const Container = tw.section`
