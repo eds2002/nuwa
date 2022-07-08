@@ -7,6 +7,7 @@ import styled from 'styled-components'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarAlt, faMobileAndroidAlt } from "@fortawesome/free-solid-svg-icons";
 import { Appointment } from "../../components";
+import Head from "next/head";
 
 export default function PageTreatment({treatment,allTreatments}){
   const [modal,setModal] = useState(false)
@@ -16,6 +17,10 @@ export default function PageTreatment({treatment,allTreatments}){
   }
 
   return (
+    <>
+    <Head>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"></meta>
+    </Head>
     <Section className = "overflow-hidden">
       {treatment ? 
       <>
@@ -68,6 +73,7 @@ export default function PageTreatment({treatment,allTreatments}){
       </>
       }
     </Section>
+    </>
   )
 }
 
