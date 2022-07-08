@@ -27,9 +27,8 @@ export default function PageTreatment({treatment,allTreatments}){
         <Navbar/>
         <Container>
           <Hero>
-            <Heading>{treatment.treatmentName}</Heading>
             {treatment.treatmentImages != undefined ? 
-            <Img src = {urlFor(treatment.treatmentImages.treatmentImage1.asset._ref)} alt = {treatment.treatmentImages.treatmentImage1.alt}/>
+            <Img src = {urlFor(treatment.treatmentImages.treatmentImage2.asset._ref)} alt = {treatment.treatmentImages.treatmentImage1.alt}/>
             :
             <Img src={"https://images.pexels.com/photos/9496596/pexels-photo-9496596.jpeg?cs=srgb&dl=pexels-brett-jordan-9496596.jpg&fm=jpg"} alt="Error"/>
             }
@@ -59,9 +58,6 @@ export default function PageTreatment({treatment,allTreatments}){
                 <FontAwesomeIcon icon = {faCalendarAlt}/>
                 </Button>
               </TextWrapper>
-              <TreatmentImageContainer>
-                <TreatmentImage src = {urlFor(treatment.treatmentImages.treatmentImage2.asset._ref)}/>
-              </TreatmentImageContainer>
             </TreatmentDetails>
           </Wrapper>
         </Container>
@@ -88,7 +84,8 @@ bg-[#E1B594]
 rounded-md
 text-white
 font-medium
-w-[200px]
+md:w-[200px]
+w-full
 mt-7
 transition
 border-2
@@ -98,9 +95,14 @@ flex items-center justify-center gap-x-4
 `
 
 const Wrapper = tw.div`
-w-full
-flex items-center justify-center
-my-16
+bg-gray-400
+h-full
+flex
+items-center
+justify-center
+pb-10
+pt-5
+sm:flex-1
 `
 
 const Normal = tw.p`
@@ -108,7 +110,7 @@ my-4 text-base text-gray-700
 `
 
 const H1 = tw.h1`
-my-4 text-4xl sm:text-5xl text-center sm:text-left md:text-6xl font-medium text-gray-800
+my-4 text-4xl sm:text-5xl md:text-6xl font-semibold text-gray-800
 `
 
 const H2 = tw.h2`
@@ -121,9 +123,12 @@ my-4 text-4xl font-bold text-gray-900
 
 
 const TreatmentImageContainer = tw.div`
-flex-1
-h-full
 w-full
+bg-yellow-600/50
+rounded-xl
+my-auto
+md:flex-1
+h-full
 `
 
 const TreatmentImage = tw.img`
@@ -137,14 +142,9 @@ flex-1
 `
 
 const TreatmentDetails = tw.div`
-flex
-justify-center
 w-full
 max-w-7xl
 px-4
-mx-auto
-md:flex-row
-flex-col-reverse
 gap-5
 `
 
@@ -162,7 +162,7 @@ text-center
 const OverlayColor = tw.div`
 absolute
 inset-0
-bg-black/75
+bg-black/25
 `
 
 const Img = tw.img`
@@ -176,19 +176,19 @@ pointer-events-none
 const Hero = tw.div`
 relative
 w-full
-h-[40vh] md:h-[45vh]
-overflow-hidden
-flex items-center justify-center
+h-full
+flex-1
 `
 
 const Container = tw.section`
 flex
 items-center
 justify-center
-text-6xl
-h-full
-w-full
 flex-col
+sm:flex-row
+text-6xl
+w-full
+h-[100vh]
 `
 
 export async function getServerSideProps({ params }) {
