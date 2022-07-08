@@ -175,7 +175,7 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
           <Listbox value={location} onChange={setLocation}>
             {({ open }) => (
               <>
-                <Listbox.Label className="block text-sm mt-7">Sede*</Listbox.Label>
+                <Listbox.Label className="block text-xs font-medium sm:text-sm mt-7">Sede*</Listbox.Label>
                 <div className="relative mt-1">
                   <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-sm text-left bg-white border border-gray-400 rounded-md shadow-sm cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
                     <span className="block truncate">{location.name}</span>
@@ -231,7 +231,7 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
           <Listbox value={treatment} onChange={setTreatment}>
             {({ open }) => (
               <>
-                <Listbox.Label className="block text-sm mt-7">Tratamiento*</Listbox.Label>
+                <Listbox.Label className="block text-xs font-medium sm:text-sm mt-7">Tratamiento*</Listbox.Label>
                 <div className="relative mt-1">
                   <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-sm text-left bg-white border border-gray-400 rounded-md shadow-sm cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
                     <span className="block truncate">{treatment}</span>
@@ -285,7 +285,7 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
 
           {/* Service Date */}
           <Date>
-            <DateLabel>Fecha y Hora*</DateLabel>
+            <Label>Fecha y Hora*</Label>
             <DateInputWrapper>
               <DateInput 
                 type="date" 
@@ -338,7 +338,12 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
   )
 }
 
-const Label = tw.p``
+const Label = tw.p`
+sm:text-sm
+text-xs
+py-0.5
+font-medium
+`
 
 const CloseIcon = tw.span`
 h-full
@@ -364,9 +369,7 @@ font-medium
 w-full
 mt-4
 transition
-border-2
-hover:bg-[#e1b59461]
-border-[#E1B594]
+hover:bg-[#d2a98a]
 
 `
 
@@ -424,6 +427,7 @@ text-black
 text-center
 mx-4
 relative
+font-semibold
 `
 
 const Wrapper = tw.div`
@@ -433,7 +437,8 @@ h-full
 w-[90%]
 max-h-[93vh]
 rounded-xl
-p-6
+px-2
+py-6
 overflow-scroll
 `
 
