@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTimes } from "@fortawesome/free-solid-svg-icons"
 import styled from 'styled-components'
 import Input from "../input/Input"
+import emailjs from 'emailjs-com'
 
 const people = [
   { id: 1, name: 'Sede Comas | Av. Universitaria, 2do piso (Ref. Metro Belaúnde)' },
@@ -17,17 +18,13 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-
-
-
-
-
 export default function Appointment({changeModalStatus, allTreatments, currentTreatment}){
   const [location, setLocation] = useState(people[0])
   const [treatment,setTreatment] = useState(currentTreatment.treatmentName)
 
 
   const modalRef = useRef(null)
+  const form = useRef();
 
   const checkIfClickedOutside = (e)=>{
     if(!modalRef.current.contains(e.target)){
@@ -113,20 +110,16 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
     setValues({...values, [e.target.name]:e.target.value})
   }
 
-  async function handleSubmit(e){
-    e.preventDefault()
-    // console.log(values)
-    fetch('/api/mail',{
-      method:'post',
-      body:JSON.stringify(values)
-    }).then((res)=>{
-      if(res.status === 200){
-        changeModalStatus(false)
-      }else{
-        console.log(res.status, "ERROR")
-      }
-    })
-  }
+  const sendEmail = (e) => {
+    e.preventDefault();
+    
+    emailjs.sendForm('service_q6wwnzf', 'template_r3mwlpf', form.current, 'Z37lQbTvaUroNGPYe')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+  };
 
   return (
     <Container>
@@ -135,10 +128,9 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
           Reserva tu cita
           <CloseIcon onClick = {()=>changeModalStatus(false)}><FontAwesomeIcon icon = {faTimes} className = "w-6 h-6"/></CloseIcon>
         </TextHeading>
-        <Form onSubmit = {(e)=>handleSubmit(e)}>
-          {/* Note to self, this logic is so confusing and unnecessary, when you get the chance, put all the inputs into their own component. */}
+        <Form onSubmit = {(e)=>sendEmail(e)} ref = {form}>
           {/* Names */}
-          <div className = "w-full text-sm mt-7">
+          <div className = "w-full mt-4 text-s">
             <Label>Nombres*</Label>
             <div className = "flex items-center justify-between gap-x-3">
               {inputs.map(input=>(
@@ -146,7 +138,7 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
                     {/* TODO, present only the first 2 inputs, these are the name inputs */}
                     {input.id <= 2 && (
                       <>
-                        <Input key = {input.id} {...input} value = {values[input.name]} onChange={onChange} className = "flex-1 w-full px-3 py-2 text-sm bg-transparent border border-gray-900 rounded-md outline-none focus:ring-indigo-500 focus:border-indigo-500"/>
+                        <Input key = {input.id} {...input} value = {values[input.name]} onChange={onChange} className = "flex-1 w-full px-3 py-2 text-sm bg-transparent border border-gray-900 rounded-md outline-none focus:ring-[#b08f6e] focus:border-[#b08f6e]"/>
                       </>
                     )}
                   </>
@@ -162,7 +154,7 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
                   {input.id > 2 && input.id <= 4 ? 
                   <>
                     <Label className = "mt-7">{input.label}</Label>
-                    <Input key = {input.id} {...input} value = {values[input.name]} onChange={onChange} className = "w-full px-3 py-2 text-sm bg-transparent border border-gray-900 rounded-md focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none"/>
+                    <Input key = {input.id} {...input} value = {values[input.name]} onChange={onChange} className = "w-full px-3 py-2 text-sm bg-transparent border border-gray-900 rounded-md focus:ring-[#b08f6e] focus:border-[#b08f6e] focus:outline-none"/>
                   </>
                   :
                     ""
@@ -177,8 +169,11 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
               <>
                 <Listbox.Label className="block text-xs font-medium sm:text-sm mt-7">Sede*</Listbox.Label>
                 <div className="relative mt-1">
-                  <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-sm text-left bg-transparent border border-gray-900 rounded-md shadow-sm cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+                  <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-sm text-left bg-transparent border border-gray-900 rounded-md shadow-sm cursor-default focus:outline-none focus:ring-1 focus:ring-[#b08f6e] focus:border-[#b08f6e]">
                     <span className="block truncate">{location.name}</span>
+
+                    {/* TODO, this is for emailjs */}
+                    <input value = {location.name} className = "hidden" name = "location" onChange = {()=> void 0}/>
                   </Listbox.Button>
 
                   <Transition
@@ -209,7 +204,7 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
                               {location ? (
                                 <span
                                   className={classNames(
-                                    active ? 'text-white' : 'text-indigo-600',
+                                    active ? 'text-white' : 'text-[#b08f6e]',
                                     'absolute inset-y-0 right-0 flex items-center pr-4'
                                   )}
                                 >
@@ -233,8 +228,11 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
               <>
                 <Listbox.Label className="block text-xs font-medium sm:text-sm mt-7">Tratamiento*</Listbox.Label>
                 <div className="relative mt-1">
-                  <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-sm text-left bg-transparent border border-gray-900 rounded-md shadow-sm cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+                  <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-sm text-left bg-transparent border border-gray-900 rounded-md shadow-sm cursor-default focus:outline-none focus:ring-1 focus:ring-[#b08f6e] focus:border-[#b08f6e]">
                     <span className="block truncate">{treatment}</span>
+
+                    {/* TODO, this is for email js */}
+                    <input value = {treatment} className = "hidden" name = "service" onChange={()=> void 0}/>
                   </Listbox.Button>
 
                   <Transition
@@ -265,7 +263,7 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
                               {location ? (
                                 <span
                                   className={classNames(
-                                    active ? 'text-white' : 'text-indigo-600',
+                                    active ? 'text-white' : 'bg-[#b08f6e]',
                                     'absolute inset-y-0 right-0 flex items-center pr-4'
                                   )}
                                 >
@@ -329,7 +327,7 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
           {/* Messages */}
           <div className="text-sm mt-7">
             <Label>Mensaje</Label>
-            <TextBox placeholder = "Si tienes alguna consulta, no dudes en llenar esta campo."></TextBox>
+            <TextBox placeholder = "Si tienes alguna consulta, no dudes en llenar esta campo." name = "message"></TextBox>
           </div>
           <Submit>Confirmar Cita</Submit>
         </Form>
@@ -382,6 +380,8 @@ border-gray-900
 bg-transparent
 rounded-md
 p-2
+focus:outline-none
+focus:border-[#b08f6e]
 `
 
 
@@ -391,7 +391,7 @@ border
 border-gray-900
 bg-transparent
 focus:outline-none
-focus:ring-indigo-500 focus:border-indigo-500
+focus:ring-[#b08f6e] focus:border-[#b08f6e]
 px-3
 py-2
 rounded-md
@@ -443,7 +443,8 @@ max-h-[93vh]
 rounded-xl
 px-2
 py-6
-overflow-scroll
+overflow-y-scroll
+overflow-x-hidden
 `
 
 const Container = tw.section`

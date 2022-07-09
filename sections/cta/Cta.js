@@ -62,7 +62,7 @@ bg-[#E1B594]
 rounded-md
 text-white
 font-medium
-px-8
+px-4
 mt-7
 transition
 hover:bg-[#caa385]

@@ -76,26 +76,24 @@ export default function PageTreatment({treatment,allTreatments}){
 const Section = tw.section``
 
 const Button = tw.button`
-sm:py-3
-py-2
-text-base
-tracking-wide
+py-3
+text-sm
 bg-[#E1B594]
 rounded-md
 text-white
 font-medium
-md:w-[200px]
-w-full
+px-8
 mt-7
 transition
-border-2
-hover:bg-[#e1b59461]
-border-[#E1B594]
-flex items-center justify-center gap-x-4
+hover:bg-[#caa385]
+flex items-center justify-center gap-x-2
+cursor-pointer
+sm:w-auto
+w-full
 `
 
 const Wrapper = tw.div`
-bg-gray-400
+bg-[#f3e0cf]
 h-full
 flex
 items-center
@@ -139,6 +137,11 @@ const TextWrapper = tw.div`
 w-full
 h-full
 flex-1
+max-w-lg
+flex
+items-start
+justify-center
+flex-col
 `
 
 const TreatmentDetails = tw.div`
@@ -146,6 +149,9 @@ w-full
 max-w-7xl
 px-4
 gap-5
+flex
+items-center
+justify-center
 `
 
 

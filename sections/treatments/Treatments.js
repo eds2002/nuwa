@@ -110,7 +110,6 @@ rounded-md
 text-white
 font-medium
 px-8
-mt-7
 transition
 hover:bg-[#caa385]
 flex items-center justify-center gap-x-2
@@ -120,10 +119,8 @@ const LearnMore = tw.a`
 py-3
 text-xs
 rounded-md
-text-gray-800
-hover:text-gray-600
-font-medium
-mt-7
+text-gray-700
+hover:text-gray-400
 transition
 flex items-center justify-center gap-x-2
 cursor-pointer
@@ -138,7 +135,6 @@ text-white
 font-medium
 mx-auto
 px-8
-mt-7
 w-[300px]
 transition
 hover:bg-[#caa385]
