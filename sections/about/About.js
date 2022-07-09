@@ -8,7 +8,7 @@ export default function About(){
         <TextWrapper>
           <Heading>Sobre Nosotras</Heading>
           <Paragraph>Especialistas en tratamientos faciales y corporales. Trabajamos para resaltar tu belleza.</Paragraph>
-          <Button>Aprende más</Button>
+          <Button className = "primaryBtn">Aprende más</Button>
         </TextWrapper>
       </Main>
     </Container>
@@ -18,7 +18,7 @@ export default function About(){
 const Container = tw.section`
 w-full
 h-full
-bg-[#AEA79D]
+bg-[#EBEAEA]
 `
 
 const Main = tw.div`
@@ -36,29 +36,17 @@ flex items-center justify-center flex-col
 const Heading = tw.h3`
 text-sm
 font-bold
-text-white
+text-[#C78F6D]
 `
 
 const Paragraph = tw.p`
 text-center
 max-w-3xl
-mt-4 text-white
+mt-4 text-gray-700
 md:text-5xl
 text-3xl
 font-bold
 tracking-tight
 `
 
-const Button = tw.button`
-py-3
-text-sm
-bg-[#E1B594]
-rounded-md
-text-white
-font-medium
-w-[200px]
-mt-7
-transition
-hover:bg-[#caa385]
-flex items-center justify-center gap-x-2
-`
+const Button = tw.button`mt-7`

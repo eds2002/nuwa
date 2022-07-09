@@ -14,7 +14,7 @@ export default function Hero(){
           <Wrapper>
             {/* <PreHeading>Nüwa</PreHeading> */}
             <Heading>Especialistas en tratamientos faciales y corporales. </Heading>
-            <Button>
+            <Button className = "primaryBtn">
               Ver Tratamientos
               <FontAwesomeIcon icon = {faLayerGroup}/>
             </Button>
@@ -29,7 +29,7 @@ export default function Hero(){
             <S src='/heroVideo.mp4' type="video/mp4" />
           </V>
         </Test>
-        <BackgroundClr></BackgroundClr>
+        <BackgroundClr/>
       </ImgContainer>
     </Container>
   )
@@ -69,7 +69,7 @@ inset-0
 `
 
 const BackgroundClr = tw.div`
-bg-black/60
+bg-gray-300/25
 inset-0 
 absolute
 `
@@ -108,7 +108,7 @@ font-bold
 text-white
 `
 const Heading = tw.p`
-text-gray-100
+text-gray-900
 max-w-xl
 text-4xl
 md:text-5xl
@@ -116,16 +116,6 @@ lg:text-6xl
 font-semibold
 `
 const Button = tw.button`
-py-3
-text-sm
-bg-[#E1B594]
-rounded-md
-text-white
-font-medium
-w-[200px]
 mt-7
-transition
-hover:bg-[#caa385]
-flex items-center justify-center gap-x-2
 `
 const Wrapper = tw.div``

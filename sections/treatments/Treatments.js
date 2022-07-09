@@ -33,7 +33,7 @@ export default function Treatments({textHidden, limit, treatments}) {
                     <FeatureP>{treatment.shortTreatmentDesc}</FeatureP>
                     <ButtonsWrapper>
                       <Link href = {`/tratamientos/${string_to_slug(treatment.treatmentName)}`}>
-                        <Appointment>
+                        <Appointment className = "primaryBtn">
                           Sacar Cita
                           <FontAwesomeIcon icon = {faCalendarAlt}/>
                         </Appointment>
@@ -100,22 +100,10 @@ export default function Treatments({textHidden, limit, treatments}) {
 
 const ButtonsWrapper = tw.div`
 flex items-center gap-x-5
-mt-5
+mt-7
 `
 
-const Appointment = tw.a`
-py-3
-text-sm
-bg-[#E1B594]
-rounded-md
-text-white
-font-medium
-px-8
-transition
-hover:bg-[#caa385]
-flex items-center justify-center gap-x-2
-cursor-pointer
-`
+const Appointment = tw.a``
 const LearnMore = tw.a`
 py-3
 text-xs
@@ -192,11 +180,11 @@ max-w-2xl mx-auto py-24 px-4 sm:px-6 sm:py-32 lg:max-w-7xl lg:px-8
 `
 
 const Heading = tw.p`
-text-sm font-semibold text-gray-500 
+text-sm font-semibold text-[#C78F6D]
 `
 
 const Paragraph = tw.p`
-mt-4 text-gray-800
+mt-4 text-gray-700
 md:text-5xl
 text-3xl
 font-bold

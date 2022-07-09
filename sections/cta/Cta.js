@@ -1,6 +1,7 @@
 import tw from "twin.macro"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faMessage } from "@fortawesome/free-solid-svg-icons"
+import Link from "next/link"
 
 export default function Cta(){
   return (
@@ -9,10 +10,12 @@ export default function Cta(){
         <TextWrapper>
           <CallToAction>Venga y lo ayudaremos a comenzar con una consulta gratuita.</CallToAction>
           {/* <Paragraph>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</Paragraph> */}
-          <Button>
-            Hablemos
-            <FontAwesomeIcon icon = {faMessage}/>
-          </Button>
+          <Link href = "/contacto">
+            <Button className = "primaryBtn">
+              Hablemos
+              <FontAwesomeIcon icon = {faMessage}/>
+            </Button>
+          </Link>
         </TextWrapper>
       </Main>
     </Container>
@@ -22,7 +25,7 @@ export default function Cta(){
 const Container = tw.section`
 w-full
 h-full
-bg-[#AEA79D]
+bg-[#EBEAEA]
 `
 
 const Main = tw.div`
@@ -37,12 +40,12 @@ flex
 items-center
 justify-center 
 flex-col 
-text-white 
+text-gray-700
 font-bold
 `
 
 const CallToAction = tw.p`
-mt-4 text-white
+mt-4
 md:text-5xl
 text-3xl
 font-bold
@@ -55,17 +58,4 @@ mt-4
 text-xl
 text-gray-600
 `
-const Button = tw.button`
-py-3
-text-sm
-bg-[#E1B594]
-rounded-md
-text-white
-font-medium
-px-4
-mt-7
-transition
-hover:bg-[#caa385]
-flex items-center justify-center gap-x-2
-cursor-pointer
-`
+const Button = tw.button`mt-7`

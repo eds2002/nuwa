@@ -118,16 +118,12 @@ const Hamburger = tw.div`
 text-2xl
 px-2
 ml-5
-text-white
 rounded-full
 hover:bg-white/10
 cursor-pointer
 `
 
 const SocialImage = tw.span`
-text-[#F1E9DC]
-hover:text-[#E1B594]
-hover:border-[#E1B594]
 transition
 cursor-pointer
 px-2
@@ -150,7 +146,6 @@ sm:flex
 const Left = tw.div`
 flex-1
 flex items-center justify-start
-text-white
 h-full
 `
 
@@ -171,6 +166,7 @@ max-w-7xl
 mx-auto
 h-full
 flex
+text-gray-900
 `
 
 const Nav = tw.nav`
@@ -180,9 +176,8 @@ flex items-center justify-center
 `
 
 const Logo = tw.h1`
-text-2xl
-font-medium
-text-white
+text-3xl
+font-bold
 cursor-pointer
 `
 
@@ -192,8 +187,6 @@ text-sm
 `
 
 const LinkName = tw.a`
-text-[#F1E9DC]
-hover:text-[#E1B594]
 cursor-pointer
 transition
 ml-10
@@ -206,7 +199,6 @@ flex-1
 flex
 items-center
 justify-center
-text-white
 h-full
 `
 

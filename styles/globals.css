@@ -8,7 +8,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  background-color:#F6ECE3;
+  background-color:white;
 }
 
 
@@ -30,4 +30,8 @@ input:invalid[focused="true"]{
     width:100px;
     height:400px;
     z-index:1000000000;
+}
+
+.primaryBtn{
+  @apply py-3 text-sm bg-[#C78F6D] rounded-md text-white font-medium w-[200px] transition hover:bg-[#caa385] flex items-center justify-center gap-x-2 cursor-pointer
 }

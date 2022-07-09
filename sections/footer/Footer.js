@@ -44,7 +44,7 @@ export default function Footer(){
           <LinkHeadings>
             <GridColOne>
               <Solutions>
-                <HeadingName>Solutions</HeadingName>
+                <HeadingName>Tratamientos</HeadingName>
                 <LinkList role="list">
                   {navigation.solutions.map((item) => (
                     <li key={item.name}>
@@ -110,24 +110,24 @@ const Number = tw.p`
 mt-3
 text-sm
 flex items-center justify-start gap-x-3
-text-gray-400
-hover:text-gray-700
+text-gray-300
+hover:text-gray-100
 transition
 `
 const Email = tw.p`
 mt-3
 text-sm
 flex items-center justify-start gap-x-3
-text-gray-400
-hover:text-gray-700
+text-gray-300
+hover:text-gray-100
 transition
 `
 const Location = tw.p`
 mt-3
 text-sm
 flex items-center justify-start gap-x-3
-text-gray-400
-hover:text-gray-700
+text-gray-300
+hover:text-gray-100
 transition
 max-w-xs
 `
@@ -163,7 +163,7 @@ mt-4 space-y-4
 `
 
 const HeadingName = tw.h3`
-text-sm font-semibold tracking-wider text-gray-400 uppercase
+text-sm font-semibold tracking-wider text-gray-300 uppercase
 `
 
 const Solutions = tw.div``
@@ -181,10 +181,10 @@ flex space-x-6
 `
 
 const Slogan = tw.p`
-text-base text-gray-500
+text-base text-gray-200
 `
 const Container = tw.footer`
-bg-white
+bg-[#BCBCC2]
 `
 
 const Main = tw.div`

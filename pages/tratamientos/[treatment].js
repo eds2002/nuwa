@@ -2,6 +2,7 @@ import { useState } from "react";
 import { sanityClient } from "../../sanity";
 import tw from "twin.macro";
 import { Navbar } from "../../components";
+import {Footer} from '../../sections'
 import { urlFor } from "../../sanity";
 import styled from 'styled-components'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -69,12 +70,13 @@ export default function PageTreatment({treatment,allTreatments, locations}){
       </>
       }
     </Section>
+    <Footer/>
     </>
   )
 }
 
 const Section = tw.section`
-bg-[#f3e0cf]
+bg-[#EBEAEA]
 `
 
 const Button = tw.button`
@@ -169,7 +171,6 @@ text-center
 const OverlayColor = tw.div`
 absolute
 inset-0
-bg-black/25
 `
 
 const Img = tw.img`
@@ -178,7 +179,6 @@ h-full
 object-cover
 select-none
 pointer-events-none
-opacity-20
 `
 
 const Hero = tw.div`
