@@ -43,8 +43,8 @@ export default function Contacto({locations}){
         <ContactList>
           <Heading>Sedes</Heading>
           <Grid>
-            {locations.map((location)=>(
-              <ContactBox>
+            {locations.map((location,index)=>(
+              <ContactBox key = {index}>
                 <H5>{location.location}</H5>
                 <P textSmall>{location.locationReference || ""}</P>
               </ContactBox>
