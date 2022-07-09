@@ -128,7 +128,7 @@ px-2
 ml-5
 rounded-full
 hover:bg-white/10
-hover:text-white
+hover:text-gray-400
 cursor-pointer
 transition
 `
@@ -137,7 +137,7 @@ const SocialImage = tw.span`
 transition
 cursor-pointer
 px-2
-hover:text-gray-500
+hover:text-gray-400
 `
 
 const Right = tw.div`
@@ -171,7 +171,6 @@ z-[999999999999]
 h-20
 w-full
 mx-auto
-bg-white/5
 `
 
 const Main = tw.div`
@@ -180,6 +179,7 @@ max-w-7xl
 mx-auto
 h-full
 flex
+text-white
 `
 
 const Nav = tw.nav`
@@ -192,7 +192,7 @@ const Logo = tw.h1`
 text-3xl
 font-bold
 cursor-pointer
-hover:text-gray-500
+hover:text-gray-400
 transition
 `
 
@@ -207,7 +207,7 @@ transition
 ml-10
 px-4
 rounded-xl
-hover:text-gray-500
+hover:text-gray-400
 `
 
 const Middle = tw.div`
