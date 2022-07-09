@@ -50,10 +50,8 @@ tracking-tight
 `
 
 const Button = tw.button`
-sm:py-3
-py-2
-text-base
-tracking-wide
+py-3
+text-sm
 bg-[#E1B594]
 rounded-md
 text-white
@@ -61,7 +59,6 @@ font-medium
 w-[200px]
 mt-7
 transition
-border-2
-hover:bg-[#e1b59461]
-border-[#E1B594]
+hover:bg-[#caa385]
+flex items-center justify-center gap-x-2
 `

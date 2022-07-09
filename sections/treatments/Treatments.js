@@ -3,6 +3,9 @@ import {features} from "./treatments.data"
 import Link from "next/link"
 import { urlFor } from "../../sanity"
 import { string_to_slug } from "../../utils/slugify"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faLayerGroup } from "@fortawesome/free-solid-svg-icons"
+import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons"
 
 export default function Treatments({textHidden, limit, treatments}) {
   console.log("yuo",treatments)
@@ -31,7 +34,10 @@ export default function Treatments({textHidden, limit, treatments}) {
                     <FeatureP>{treatment.shortTreatmentDesc}</FeatureP>
                     <ButtonsWrapper>
                       <Link href = {`/tratamientos/${string_to_slug(treatment.treatmentName)}`}>
-                        <Appointment>Sacar Cita</Appointment>
+                        <Appointment>
+                          Sacar Cita
+                          <FontAwesomeIcon icon = {faCalendarAlt}/>
+                        </Appointment>
                       </Link>
                       <Link href = "/tratamientos/${treatmentName}">
                         <LearnMore>Aprende Más</LearnMore>
@@ -79,7 +85,10 @@ export default function Treatments({textHidden, limit, treatments}) {
         {limit && (
           <ViewAllTreatments>
             <Link href = "/tratamientos">
-              <LinkName>Ver todos los tratamientos</LinkName>
+              <LinkName>
+                Ver todos los tratamientos
+                <FontAwesomeIcon icon = {faLayerGroup}/>
+              </LinkName>
             </Link>
           </ViewAllTreatments>
         )}
@@ -94,53 +103,46 @@ mt-5
 `
 
 const Appointment = tw.a`
-py-2
+py-3
 text-sm
-tracking-wide
 bg-[#E1B594]
 rounded-md
 text-white
 font-medium
+px-8
+mt-7
 transition
-border-[1px]
-hover:bg-[#d4ab8c]
-border-[#E1B594]
-hover:border-[#d4ab8c]
+hover:bg-[#caa385]
+flex items-center justify-center gap-x-2
 cursor-pointer
-px-6
-text-center
 `
 const LearnMore = tw.a`
-py-2
-text-sm
-tracking-wide
+py-3
+text-xs
 rounded-md
-text-[#E1B594]
+text-gray-800
+hover:text-gray-600
 font-medium
+mt-7
 transition
-border-[1px]
-px-6
-hover:bg-[#c69f81]
-hover:text-white
-border-[#c69f81]
+flex items-center justify-center gap-x-2
 cursor-pointer
 `
 
 const LinkName = tw.a`
-sm:py-3
-py-2
-text-base
-tracking-wide
+py-3
+text-sm
 bg-[#E1B594]
 rounded-md
 text-white
 font-medium
-px-7
+mx-auto
+px-8
 mt-7
+w-[300px]
 transition
-border-2
-hover:bg-[#e1b59461]
-border-[#E1B594]
+hover:bg-[#caa385]
+flex items-center justify-center gap-x-2
 cursor-pointer
 `
 

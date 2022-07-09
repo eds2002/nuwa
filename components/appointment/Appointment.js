@@ -146,7 +146,7 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
                     {/* TODO, present only the first 2 inputs, these are the name inputs */}
                     {input.id <= 2 && (
                       <>
-                        <Input key = {input.id} {...input} value = {values[input.name]} onChange={onChange} className = "flex-1 w-full px-3 py-2 border border-gray-400 rounded-md text-smPageTreatment"/>
+                        <Input key = {input.id} {...input} value = {values[input.name]} onChange={onChange} className = "flex-1 w-full px-3 py-2 text-sm bg-transparent border border-gray-900 rounded-md outline-none focus:ring-indigo-500 focus:border-indigo-500"/>
                       </>
                     )}
                   </>
@@ -162,7 +162,7 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
                   {input.id > 2 && input.id <= 4 ? 
                   <>
                     <Label className = "mt-7">{input.label}</Label>
-                    <Input key = {input.id} {...input} value = {values[input.name]} onChange={onChange} className = "w-full px-3 py-2 text-sm border border-gray-400 rounded-md"/>
+                    <Input key = {input.id} {...input} value = {values[input.name]} onChange={onChange} className = "w-full px-3 py-2 text-sm bg-transparent border border-gray-900 rounded-md focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none"/>
                   </>
                   :
                     ""
@@ -177,7 +177,7 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
               <>
                 <Listbox.Label className="block text-xs font-medium sm:text-sm mt-7">Sede*</Listbox.Label>
                 <div className="relative mt-1">
-                  <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-sm text-left bg-white border border-gray-400 rounded-md shadow-sm cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+                  <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-sm text-left bg-transparent border border-gray-900 rounded-md shadow-sm cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
                     <span className="block truncate">{location.name}</span>
                   </Listbox.Button>
 
@@ -188,13 +188,13 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                   >
-                    <Listbox.Options className="absolute z-10 w-full py-1 mt-1 overflow-auto text-sm bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Listbox.Options className="absolute z-10 w-full py-1 mt-1 overflow-auto text-sm bg-[#e8d4c0] rounded-md shadow-lg bg- max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none">
                       {people.map((person) => (
                         <Listbox.Option
                           key={person.id}
                           className={({ active }) =>
                             classNames(
-                              active ? 'text-white bg-indigo-600' : 'text-gray-900',
+                              active ? 'text-white bg-[#b08f6e]' : 'text-gray-900',
                               'cursor-default select-none relative py-2 pl-3 pr-9'
                             )
                           }
@@ -233,7 +233,7 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
               <>
                 <Listbox.Label className="block text-xs font-medium sm:text-sm mt-7">Tratamiento*</Listbox.Label>
                 <div className="relative mt-1">
-                  <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-sm text-left bg-white border border-gray-400 rounded-md shadow-sm cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+                  <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-sm text-left bg-transparent border border-gray-900 rounded-md shadow-sm cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
                     <span className="block truncate">{treatment}</span>
                   </Listbox.Button>
 
@@ -244,13 +244,13 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                   >
-                    <Listbox.Options className="absolute z-10 w-full py-1 mt-1 overflow-auto text-sm bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Listbox.Options className="absolute z-10 w-full py-1 mt-1 overflow-auto text-sm bg-[#e8d4c0] rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none">
                       {allTreatments.map((treatment,index) => (
                         <Listbox.Option
                           key={index}
                           className={({ active }) =>
                             classNames(
-                              active ? 'text-white bg-indigo-600' : 'text-gray-900',
+                              active ? 'text-white bg-[#b08f6e]' : 'text-gray-900',
                               'cursor-default select-none relative py-2 pl-3 pr-9'
                             )
                           }
@@ -296,7 +296,7 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
                 name = "day" 
                 onChange={onChange}
               />
-              <div className="flex items-center justify-center px-3 py-2 bg-white border border-gray-400 rounded-md gap-x-2">
+              <div className="flex items-center justify-center px-3 py-2 bg-transparent border border-gray-900 rounded-md gap-x-2">
                 <div className="flex">
                   <select name="time" className="text-sm bg-transparent outline-none appearance-none" onChange = {onChange}>
                     <option>10:00am</option>
@@ -378,7 +378,8 @@ resize-none
 w-full
 h-32
 border
-border-gray-400
+border-gray-900
+bg-transparent
 rounded-md
 p-2
 `
@@ -387,7 +388,10 @@ p-2
 const DateInput = tw.input`
 w-full
 border
-border-gray-400
+border-gray-900
+bg-transparent
+focus:outline-none
+focus:ring-indigo-500 focus:border-indigo-500
 px-3
 py-2
 rounded-md
@@ -432,7 +436,7 @@ font-semibold
 
 const Wrapper = tw.div`
 max-w-xl
-bg-white
+bg-[#F6ECE3]
 h-full
 w-[90%]
 max-h-[93vh]

@@ -1,6 +1,9 @@
 // import tw from "tailwind-styled-components/dist/tailwind"
 import { Navbar } from "../../components"
 import tw from "twin.macro"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faLayerGroup } from "@fortawesome/free-solid-svg-icons"
+
 
 export default function Hero(){
   return (
@@ -11,18 +14,41 @@ export default function Hero(){
           <Wrapper>
             {/* <PreHeading>Nüwa</PreHeading> */}
             <Heading>Especialistas en tratamientos faciales y corporales. </Heading>
-            <Button>Ver Tratamientos</Button>
+            <Button>
+              Ver Tratamientos
+              <FontAwesomeIcon icon = {faLayerGroup}/>
+            </Button>
           </Wrapper>
         </TextWrapper>
+          {/* <Image src = {image} layout = 'fill' objectFit="cover"/> */}
       </Main>
       {/* TODO - Display background image, add background color */}
       <ImgContainer>
+        <Test>  
+          <V autoPlay muted loop>
+            <S src='/heroVideo.mp4' type="video/mp4" />
+          </V>
+        </Test>
         <BackgroundClr></BackgroundClr>
-        <Img src = "https://images.pexels.com/photos/12115017/pexels-photo-12115017.jpeg?cs=srgb&dl=pexels-denys-mikhalevych-12115017.jpg&fm=jpg"/>
       </ImgContainer>
     </Container>
   )
 }
+
+const V = tw.video`
+w-full
+h-screen
+z-10
+object-cover
+`
+
+const S = tw.source``
+
+const Test = tw.div`
+relative 
+w-full
+h-screen
+`
 
 const Container = tw.section`
   relative
@@ -57,6 +83,8 @@ object-cover
 const Main = tw.div`
 max-w-7xl
 mx-auto
+w-full
+h-full
 `
 
 const TextWrapper = tw.div`
@@ -69,8 +97,6 @@ flex
 items-center
 sm:justify-start
 justify-center
-sm:text-left
-text-center
 px-4
 `
 const PreHeading = tw.p`
@@ -87,12 +113,11 @@ max-w-xl
 text-4xl
 md:text-5xl
 lg:text-6xl
+font-semibold
 `
 const Button = tw.button`
-sm:py-3
-py-2
-text-base
-tracking-wide
+py-3
+text-sm
 bg-[#E1B594]
 rounded-md
 text-white
@@ -100,8 +125,7 @@ font-medium
 w-[200px]
 mt-7
 transition
-border-2
-hover:bg-[#e1b59461]
-border-[#E1B594]
+hover:bg-[#caa385]
+flex items-center justify-center gap-x-2
 `
 const Wrapper = tw.div``

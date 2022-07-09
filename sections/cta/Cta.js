@@ -1,4 +1,6 @@
 import tw from "twin.macro"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faMessage } from "@fortawesome/free-solid-svg-icons"
 
 export default function Cta(){
   return (
@@ -7,7 +9,10 @@ export default function Cta(){
         <TextWrapper>
           <CallToAction>Venga y lo ayudaremos a comenzar con una consulta gratuita.</CallToAction>
           {/* <Paragraph>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</Paragraph> */}
-          <Button>Hablemos</Button>
+          <Button>
+            Hablemos
+            <FontAwesomeIcon icon = {faMessage}/>
+          </Button>
         </TextWrapper>
       </Main>
     </Container>
@@ -51,18 +56,16 @@ text-xl
 text-gray-600
 `
 const Button = tw.button`
-sm:py-3
-py-2
-text-base
-tracking-wide
+py-3
+text-sm
 bg-[#E1B594]
 rounded-md
 text-white
 font-medium
-w-[200px]
+px-8
 mt-7
 transition
-border-2
-hover:bg-[#e1b59461]
-border-[#E1B594]
+hover:bg-[#caa385]
+flex items-center justify-center gap-x-2
+cursor-pointer
 `

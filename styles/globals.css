@@ -24,3 +24,10 @@ a {
 input:invalid[focused="true"]{
   @apply border-red-500
 } 
+
+.test{
+    object-fit: cover;   
+    width:100px;
+    height:400px;
+    z-index:1000000000;
+}
