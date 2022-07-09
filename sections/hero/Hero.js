@@ -25,7 +25,7 @@ export default function Hero(){
       {/* TODO - Display background image, add background color */}
       <ImgContainer>
         <Test>  
-          <V autoPlay muted loop>
+          <V autoPlay muted loop playsInline>
             <S src='/heroVideo.mp4' type="video/mp4" />
           </V>
         </Test>
