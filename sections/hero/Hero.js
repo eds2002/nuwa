@@ -13,7 +13,7 @@ export default function Hero(){
         <TextWrapper>
           <Wrapper>
             {/* <PreHeading>Nüwa</PreHeading> */}
-            <Heading>Especialistas en tratamientos faciales y corporales. </Heading>
+            <Heading className = "headingClr">Especialistas en tratamientos faciales y corporales. </Heading>
             <Button className = "primaryBtn">
               Ver Tratamientos
               <FontAwesomeIcon icon = {faLayerGroup}/>
@@ -108,7 +108,6 @@ font-bold
 text-white
 `
 const Heading = tw.p`
-text-gray-900
 max-w-xl
 text-4xl
 md:text-5xl

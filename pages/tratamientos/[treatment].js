@@ -54,7 +54,7 @@ export default function PageTreatment({treatment,allTreatments, locations}){
                     }
                   </div>
                 ))}
-                <Button onClick = {()=>setModal(!modal)}>
+                <Button onClick = {()=>setModal(!modal)} className = "primaryBtn">
                 Sacar Cita
                 <FontAwesomeIcon icon = {faCalendarAlt}/>
                 </Button>
@@ -80,19 +80,6 @@ bg-[#EBEAEA]
 `
 
 const Button = tw.button`
-py-3
-text-sm
-bg-[#E1B594]
-rounded-md
-text-white
-font-medium
-px-8
-mt-7
-transition
-hover:bg-[#caa385]
-flex items-center justify-center gap-x-2
-cursor-pointer
-sm:w-auto
 w-full
 `
 

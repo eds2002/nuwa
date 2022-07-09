@@ -330,7 +330,7 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
             <Label>Mensaje</Label>
             <TextBox placeholder = "Si tienes alguna consulta, no dudes en llenar esta campo." name = "message"></TextBox>
           </div>
-          <Submit>
+          <Submit className = "primaryBtn">
             {confirming ? 
             <>
               <p>Confirmando...</p>
@@ -371,17 +371,8 @@ transition
 const DateLabel = tw.p``
 
 const Submit = tw.button`
-py-3
-text-sm
-bg-[#E1B594]
-rounded-md
-text-white
-font-medium
 w-full
-mt-3
-transition
-hover:bg-[#caa385]
-flex items-center justify-center gap-x-2
+mt-4
 `
 
 const TextBox = tw.textarea`
@@ -449,7 +440,7 @@ font-semibold
 
 const Wrapper = tw.div`
 max-w-xl
-bg-[#F6ECE3]
+bg-white
 h-full
 w-[90%]
 max-h-[93vh]

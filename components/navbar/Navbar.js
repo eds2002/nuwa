@@ -8,12 +8,20 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons"
 export default function Navbar(){
   return (
     <Container>
-      <Main>
+      <Main className = "headingClr">
         <Nav>
           <Left>
             <IconsContainer>
-              <SocialImage><FontAwesomeIcon icon={faFacebookF} /></SocialImage>
-              <SocialImage><FontAwesomeIcon icon={faInstagram} /></SocialImage>
+              <Link href = "https://www.facebook.com/NUWAInnovacionEsteticaPeru">
+                <a target = "_blank">
+                  <SocialImage><FontAwesomeIcon icon={faFacebookF} /></SocialImage>
+                </a>
+              </Link>
+              <Link href = "https://www.instagram.com/nuwainnovacionestetica">
+                <a target = "_blank">
+                  <SocialImage><FontAwesomeIcon icon={faInstagram} /></SocialImage>
+                </a>
+              </Link>
             </IconsContainer>
           </Left>
           <Middle>
@@ -23,7 +31,7 @@ export default function Navbar(){
           </Middle>
           <Right>
             <ContactButton>
-              <Link href = "#">
+              <Link href = "/contacto">
                 <LinkName>Contacto</LinkName>
               </Link>
             </ContactButton>
@@ -120,13 +128,16 @@ px-2
 ml-5
 rounded-full
 hover:bg-white/10
+hover:text-white
 cursor-pointer
+transition
 `
 
 const SocialImage = tw.span`
 transition
 cursor-pointer
 px-2
+hover:text-gray-500
 `
 
 const Right = tw.div`
@@ -145,8 +156,10 @@ sm:flex
 
 const Left = tw.div`
 flex-1
-flex items-center justify-start
+sm:flex items-center justify-start
+hidden
 h-full
+
 `
 
 const Container = tw.div`
@@ -158,6 +171,7 @@ z-[999999999999]
 h-20
 w-full
 mx-auto
+bg-white/5
 `
 
 const Main = tw.div`
@@ -166,7 +180,6 @@ max-w-7xl
 mx-auto
 h-full
 flex
-text-gray-900
 `
 
 const Nav = tw.nav`
@@ -179,6 +192,8 @@ const Logo = tw.h1`
 text-3xl
 font-bold
 cursor-pointer
+hover:text-gray-500
+transition
 `
 
 const Links = tw.ul`
@@ -192,13 +207,15 @@ transition
 ml-10
 px-4
 rounded-xl
+hover:text-gray-500
 `
 
 const Middle = tw.div`
 flex-1
 flex
 items-center
-justify-center
+sm:justify-center
+justify-start
 h-full
 `
 

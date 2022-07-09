@@ -130,7 +130,6 @@ z-10
 const ImageWrapper = tw.div`
 w-full
 h-full
-bg-green-500
 `
 
 const BackgroundImage = tw.div`
@@ -141,7 +140,6 @@ inset-0
 const NavigationWrapper = tw.section`
 w-full
 h-[50vh]
-bg-red-500
 flex
 items-center
 justify-center
