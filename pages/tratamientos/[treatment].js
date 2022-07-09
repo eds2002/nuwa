@@ -9,7 +9,7 @@ import { faCalendarAlt, faMobileAndroidAlt } from "@fortawesome/free-solid-svg-i
 import { Appointment } from "../../components";
 import Head from "next/head";
 
-export default function PageTreatment({treatment,allTreatments}){
+export default function PageTreatment({treatment,allTreatments, locations}){
   const [modal,setModal] = useState(false)
 
   function changeModalStatus(state){
@@ -28,7 +28,7 @@ export default function PageTreatment({treatment,allTreatments}){
         <Container>
           <Hero>
             {treatment.treatmentImages != undefined ? 
-            <Img src = {urlFor(treatment.treatmentImages.treatmentImage2.asset._ref)} alt = {treatment.treatmentImages.treatmentImage1.alt}/>
+            <Img src = {urlFor(treatment.treatmentImages.treatmentImage1.asset._ref)} alt = {treatment.treatmentImages.treatmentImage1.alt}/>
             :
             <Img src={"https://images.pexels.com/photos/9496596/pexels-photo-9496596.jpeg?cs=srgb&dl=pexels-brett-jordan-9496596.jpg&fm=jpg"} alt="Error"/>
             }
@@ -61,7 +61,7 @@ export default function PageTreatment({treatment,allTreatments}){
             </TreatmentDetails>
           </Wrapper>
         </Container>
-        {modal && (<Appointment changeModalStatus = {changeModalStatus} allTreatments = {allTreatments} currentTreatment = {treatment}/>)}
+        {modal && (<Appointment changeModalStatus = {changeModalStatus} allTreatments = {allTreatments} currentTreatment = {treatment} locations = {locations}/>)}
       </>  
       :
       <>
@@ -73,7 +73,9 @@ export default function PageTreatment({treatment,allTreatments}){
   )
 }
 
-const Section = tw.section``
+const Section = tw.section`
+bg-[#f3e0cf]
+`
 
 const Button = tw.button`
 py-3
@@ -93,7 +95,6 @@ w-full
 `
 
 const Wrapper = tw.div`
-bg-[#f3e0cf]
 h-full
 flex
 items-center
@@ -177,13 +178,15 @@ h-full
 object-cover
 select-none
 pointer-events-none
+opacity-20
 `
 
 const Hero = tw.div`
 relative
 w-full
-h-full
-flex-1
+sm:flex-1
+sm:h-screen
+h-[30vh]
 `
 
 const Container = tw.section`
@@ -194,13 +197,16 @@ flex-col
 sm:flex-row
 text-6xl
 w-full
-h-[100vh]
+sm:h-screen
+h-full
 `
 
 export async function getServerSideProps({ params }) {
   // TODO Get list of treatments from sanity
-  const query = '*[ _type == "tratamientos"]';
-  const treatments = await sanityClient.fetch(query)
+  const treatmentsQuery = '*[ _type == "tratamientos"]';
+  const locationQuery =  '*[ _type == "ubicaciones"]'
+  const treatments = await sanityClient.fetch(treatmentsQuery)
+  const locations = await sanityClient.fetch(locationQuery)
 
   // TODO find the index of the requested treatment
   const requestedTreatment = treatments.findIndex(treatment => treatment?.slug?.current === params.treatment)
@@ -211,6 +217,6 @@ export async function getServerSideProps({ params }) {
   }else{
     // TODO, requested page exists
     console.log('exists bro')
-    return {props:{treatment:treatments[requestedTreatment], allTreatments:treatments}}
+    return {props:{treatment:treatments[requestedTreatment], allTreatments:treatments, locations: locations}}
   }
 }

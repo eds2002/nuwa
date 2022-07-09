@@ -5,10 +5,9 @@ import { urlFor } from "../../sanity"
 import { string_to_slug } from "../../utils/slugify"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faLayerGroup } from "@fortawesome/free-solid-svg-icons"
-import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons"
+import { faCalendarAlt, faCaretDown } from "@fortawesome/free-solid-svg-icons"
 
 export default function Treatments({textHidden, limit, treatments}) {
-  console.log("yuo",treatments)
   return (
     <Container>
       <SectionText textHidden = {textHidden}>
@@ -48,7 +47,9 @@ export default function Treatments({textHidden, limit, treatments}) {
                   <FeatureImgContainer position = {featureIdx % 2 === 0 ? 'true' : 'false'}>
                     <FeatureImgWrapper>
                       {treatment.treatmentImages != undefined ? 
-                      <FeatureImg src={urlFor(treatment.treatmentImages.treatmentImage1.asset._ref)} alt={treatment.treatmentImage?.alt} />
+                      <Link href = {`/tratamientos/${string_to_slug(treatment.treatmentName)}`}>
+                        <FeatureImg src={urlFor(treatment.treatmentImages.treatmentImage1.asset._ref)} alt={treatment.treatmentImage?.alt} />
+                      </Link>
                       :
                       <FeatureImg src={"https://images.pexels.com/photos/9496596/pexels-photo-9496596.jpeg?cs=srgb&dl=pexels-brett-jordan-9496596.jpg&fm=jpg"} alt="Error" />
                       }
@@ -87,7 +88,7 @@ export default function Treatments({textHidden, limit, treatments}) {
             <Link href = "/tratamientos">
               <LinkName>
                 Ver todos los tratamientos
-                <FontAwesomeIcon icon = {faLayerGroup}/>
+                <FontAwesomeIcon icon = {faCaretDown}/>
               </LinkName>
             </Link>
           </ViewAllTreatments>
@@ -127,17 +128,14 @@ cursor-pointer
 `
 
 const LinkName = tw.a`
-py-3
+py-2
 text-sm
-bg-[#E1B594]
 rounded-md
-text-white
+text-gray-400
+hover:text-gray-600
 font-medium
 mx-auto
-px-8
-w-[300px]
 transition
-hover:bg-[#caa385]
 flex items-center justify-center gap-x-2
 cursor-pointer
 `
@@ -150,6 +148,7 @@ text-center
 
 const FeatureImg = tw.img`
 object-cover object-center
+cursor-pointer
 `
 
 const FeatureImgWrapper = tw.div`
@@ -193,13 +192,12 @@ max-w-2xl mx-auto py-24 px-4 sm:px-6 sm:py-32 lg:max-w-7xl lg:px-8
 `
 
 const Heading = tw.p`
-text-sm font-bold text-gray-900 
+text-sm font-semibold text-gray-500 
 `
 
 const Paragraph = tw.p`
-mt-4 text-gray-900
+mt-4 text-gray-800
 md:text-5xl
 text-3xl
-font-extrabold
-tracking-tight
+font-bold
 `

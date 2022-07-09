@@ -3,7 +3,7 @@ import { Fragment, useState, useRef, useEffect } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon, ClockIcon } from '@heroicons/react/solid'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faTimes } from "@fortawesome/free-solid-svg-icons"
+import { faTimes, faPaperPlane, faSpinner} from "@fortawesome/free-solid-svg-icons"
 import styled from 'styled-components'
 import Input from "../input/Input"
 import emailjs from 'emailjs-com'
@@ -18,9 +18,10 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Appointment({changeModalStatus, allTreatments, currentTreatment}){
-  const [location, setLocation] = useState(people[0])
+export default function Appointment({changeModalStatus, allTreatments, currentTreatment, locations}){
+  const [location, setLocation] = useState(locations[0].location)
   const [treatment,setTreatment] = useState(currentTreatment.treatmentName)
+  const [confirming, setConfirming] = useState(false)
 
 
   const modalRef = useRef(null)
@@ -112,14 +113,18 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
 
   const sendEmail = (e) => {
     e.preventDefault();
+    setConfirming(true)
     
     emailjs.sendForm('service_q6wwnzf', 'template_r3mwlpf', form.current, 'Z37lQbTvaUroNGPYe')
       .then((result) => {
-          console.log(result.text);
+        console.log(result)
+        changeModalStatus(false)
+        setConfirming(false)
       }, (error) => {
           console.log(error.text);
       });
   };
+
 
   return (
     <Container>
@@ -170,7 +175,7 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
                 <Listbox.Label className="block text-xs font-medium sm:text-sm mt-7">Sede*</Listbox.Label>
                 <div className="relative mt-1">
                   <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-sm text-left bg-transparent border border-gray-900 rounded-md shadow-sm cursor-default focus:outline-none focus:ring-1 focus:ring-[#b08f6e] focus:border-[#b08f6e]">
-                    <span className="block truncate">{location.name}</span>
+                    <span className="block truncate">{location}</span>
 
                     {/* TODO, this is for emailjs */}
                     <input value = {location.name} className = "hidden" name = "location" onChange = {()=> void 0}/>
@@ -184,21 +189,21 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
                     leaveTo="opacity-0"
                   >
                     <Listbox.Options className="absolute z-10 w-full py-1 mt-1 overflow-auto text-sm bg-[#e8d4c0] rounded-md shadow-lg bg- max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      {people.map((person) => (
+                      {locations.map((location,index) => (
                         <Listbox.Option
-                          key={person.id}
+                          key={index}
                           className={({ active }) =>
                             classNames(
                               active ? 'text-white bg-[#b08f6e]' : 'text-gray-900',
                               'cursor-default select-none relative py-2 pl-3 pr-9'
                             )
                           }
-                          value={person}
+                          value={location.location}
                         >
-                          {({ location, active }) => (
-                            <>
-                              <span className={classNames(location ? 'font-semibold' : 'font-normal', 'block truncate')}>
-                                {person.name}
+                          {({ locate, active }) => (
+                            <> 
+                              <span className={classNames(locate ? 'font-semibold' : 'font-normal', 'block truncate')}>
+                                {location.location}
                               </span>
 
                               {location ? (
@@ -208,7 +213,6 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
                                     'absolute inset-y-0 right-0 flex items-center pr-4'
                                   )}
                                 >
-                                  <CheckIcon className="w-5 h-5" aria-hidden="true" />
                                 </span>
                               ) : null}
                             </>
@@ -289,7 +293,7 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
                 type="date" 
                 defaultValue = {currentDayFormatted()} 
                 min = {new window.Date().toISOString().split('T')[0]} 
-                max = "2022-12-31" 
+                max = {`${new window.Date().getFullYear()}-12-31`}
                 required 
                 name = "day" 
                 onChange={onChange}
@@ -314,9 +318,6 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
                     <option>5:30pm</option>
                     <option>6:30pm</option>
                     <option>7:00pm</option>
-                    <option>7:30pm</option>
-                    <option>8:00pm</option>
-                    <option>8:30pm</option>
                   </select>
                 </div>
                 <ClockIcon className="w-4 h-4" aria-hidden="true" />
@@ -329,7 +330,20 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
             <Label>Mensaje</Label>
             <TextBox placeholder = "Si tienes alguna consulta, no dudes en llenar esta campo." name = "message"></TextBox>
           </div>
-          <Submit>Confirmar Cita</Submit>
+          <Submit>
+            {confirming ? 
+            <>
+              <p>Confirmando...</p>
+              <FontAwesomeIcon icon = {faSpinner} className = "animate-spin"/>
+            </>
+            :
+            <>
+              Confirmar Cita
+              <FontAwesomeIcon icon = {faPaperPlane}/>
+            </>
+            }
+          </Submit>
+          
         </Form>
       </Wrapper>
     </Container>
@@ -357,18 +371,17 @@ transition
 const DateLabel = tw.p``
 
 const Submit = tw.button`
-py-2
+py-3
 text-sm
-tracking-wide
 bg-[#E1B594]
 rounded-md
 text-white
 font-medium
 w-full
-mt-4
+mt-3
 transition
-hover:bg-[#d2a98a]
-
+hover:bg-[#caa385]
+flex items-center justify-center gap-x-2
 `
 
 const TextBox = tw.textarea`
