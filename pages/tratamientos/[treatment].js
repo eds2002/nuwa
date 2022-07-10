@@ -71,7 +71,7 @@ export default function PageTreatment({treatment,allTreatments, locations}){
             <BenefitsSubHeading>Interesado? Descubre todos los beneficios que este tratamiento tiene para ti.</BenefitsSubHeading>
             <BenefitsCards>
                 {treatment.benefits.map((benefit,i)=>(
-                  <BenefitCard className = {`${i % 2 ? 'ml-auto' : 'mr-auto'}`} >
+                  <BenefitCard className = {`${i % 2 ? 'ml-auto' : 'mr-auto'}`} key = {i}>
                     <BenefitIcon className = {`${i % 2 ? 'sm:left-[-20px] left-[0px]' : 'sm:right-[-20px] right-[0px]'}`}>
                       <p className = "font-bold">{i+1}</p>
                     </BenefitIcon>
