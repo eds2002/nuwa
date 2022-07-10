@@ -64,8 +64,10 @@ w-full
 const Container = tw.div`
 bg-[#D5BFAD]
 fixed
-inset-0
 h-[100vh]
+left-0
+right-0
+top-0
 flex
 items-start
 justify-center
