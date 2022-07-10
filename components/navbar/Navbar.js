@@ -87,9 +87,10 @@ sm:block
 const Hamburger = tw.div`
 text-2xl
 rounded-full
-hover:bg-white/10
+bg-white/20
+hover:bg-white/50
 hover:text-gray-400
-active:bg-gray-500/10
+active:bg-white/80
 cursor-pointer
 transition
 z-10

@@ -65,7 +65,7 @@ const Container = tw.div`
 bg-[#D5BFAD]
 fixed
 inset-0
-rounded-xl
+h-[100vh]
 flex
 items-start
 justify-center
