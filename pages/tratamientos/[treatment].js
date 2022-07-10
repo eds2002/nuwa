@@ -1,17 +1,18 @@
 import { useState } from "react";
 import { sanityClient } from "../../sanity";
-import tw from "twin.macro";
+import tw, {styled,css} from "twin.macro";
 import { Navbar } from "../../components";
 import {Footer} from '../../sections'
 import { urlFor } from "../../sanity";
-import styled from 'styled-components'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendarAlt, faMobileAndroidAlt } from "@fortawesome/free-solid-svg-icons";
+import { faCalendarAlt, faHeart, faMobileAndroidAlt } from "@fortawesome/free-solid-svg-icons";
 import { Appointment } from "../../components";
 import Head from "next/head";
 
 export default function PageTreatment({treatment,allTreatments, locations}){
   const [modal,setModal] = useState(false)
+
+  console.log(treatment)
 
   function changeModalStatus(state){
     setModal(state)
@@ -26,7 +27,7 @@ export default function PageTreatment({treatment,allTreatments, locations}){
       {treatment ? 
       <>
         <Navbar/>
-        <Container>
+        <TreatmentSection>
           <Hero>
             {treatment.treatmentImages != undefined ? 
             <Img src = {urlFor(treatment.treatmentImages.treatmentImage1.asset._ref)} alt = {treatment.treatmentImages.treatmentImage1.alt}/>
@@ -61,7 +62,26 @@ export default function PageTreatment({treatment,allTreatments, locations}){
               </TextWrapper>
             </TreatmentDetails>
           </Wrapper>
-        </Container>
+        </TreatmentSection>
+
+        {/* TODO, there must be 3 benefits in order to display this section */}
+        {treatment.benefits?.length >= 3 && (
+          <Benefits>
+            <BenefitsHeading>Los Beneficios</BenefitsHeading>
+            <BenefitsSubHeading>Interesado? Descubre todos los beneficios que este tratamiento tiene para ti.</BenefitsSubHeading>
+            <BenefitsCards>
+                {treatment.benefits.map((benefit,i)=>(
+                  <BenefitCard className = {`${i % 2 ? 'ml-auto' : 'mr-auto'}`} >
+                    <BenefitIcon className = {`${i % 2 ? 'sm:left-[-20px] left-[0px]' : 'sm:right-[-20px] right-[0px]'}`}>
+                      <p className = "font-bold">{i+1}</p>
+                    </BenefitIcon>
+                    <BenefitTitle>{benefit.benefitTitle}</BenefitTitle>
+                    <BenefitDesc>{benefit.benefitDesc}</BenefitDesc>
+                  </BenefitCard>
+                ))}
+            </BenefitsCards>
+          </Benefits>
+        )}
         {modal && (<Appointment changeModalStatus = {changeModalStatus} allTreatments = {allTreatments} currentTreatment = {treatment} locations = {locations}/>)}
       </>  
       :
@@ -75,8 +95,78 @@ export default function PageTreatment({treatment,allTreatments, locations}){
   )
 }
 
-const Section = tw.section`
+const BenefitsSubHeading = tw.p`
+text-gray-500
+max-w-sm
+text-lg
+text-center
+mx-auto
+mb-24
+`
+
+const BenefitIcon = tw.div`
+absolute
+w-[50px]
+h-[50px]
+bg-[#C78F6D]
+flex
+items-center
+justify-center
+text-white
+rounded-full
+text-2xl
+top-[-20px]
+`
+
+const BenefitDesc = tw.p`
+text-sm
+text-gray-500
+`
+const BenefitTitle = tw.h3`
+font-semibold
+mb-4
+text-2xl
+text-[#C78F6D]
+`
+const BenefitCard = styled.div`
+${tw`
+md:w-[40%]
+w-full
+rounded-xl
+px-4
+py-8
 bg-[#EBEAEA]
+shadow-xl
+my-16
+h-52
+flex
+items-start
+justify-center
+flex-col
+relative
+`}
+`
+
+const BenefitsHeading = tw.h3`
+text-4xl
+font-bold
+my-2
+text-center
+`
+
+const BenefitsCards = tw.div`
+w-full
+`
+
+const Benefits = tw.section`
+w-full
+max-w-7xl
+px-4
+py-16
+mx-auto
+`
+
+const Section = tw.section`
 `
 
 const Button = tw.button`
@@ -84,17 +174,19 @@ w-full
 `
 
 const Wrapper = tw.div`
-h-full
 flex
 items-center
 justify-center
 pb-10
 pt-5
 sm:flex-1
+h-[50vh]
+sm:h-full
 `
 
 const Normal = tw.p`
 my-4 text-base text-gray-700
+max-w-xl
 `
 
 const H1 = tw.h1`
@@ -173,10 +265,11 @@ relative
 w-full
 sm:flex-1
 sm:h-screen
-h-[30vh]
+h-[50vh]
+overflow-hidden
 `
 
-const Container = tw.section`
+const TreatmentSection = tw.section`
 flex
 items-center
 justify-center
@@ -184,8 +277,8 @@ flex-col
 sm:flex-row
 text-6xl
 w-full
-sm:h-screen
-h-full
+h-screen
+bg-[#EBEAEA]
 `
 
 export async function getServerSideProps({ params }) {

@@ -3,6 +3,7 @@ import { Navbar } from "../../components"
 import tw from "twin.macro"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faLayerGroup } from "@fortawesome/free-solid-svg-icons"
+import Link from "next/link"
 
 
 export default function Hero(){
@@ -14,10 +15,12 @@ export default function Hero(){
           <Wrapper>
             {/* <PreHeading>Nüwa</PreHeading> */}
             <Heading className = "headingClr">Especialistas en tratamientos faciales y corporales. </Heading>
-            <Button className = "primaryBtn">
-              Ver Tratamientos
-              <FontAwesomeIcon icon = {faLayerGroup}/>
-            </Button>
+            <Link href = "/tratamientos">
+              <Button className = "primaryBtn">
+                Ver Tratamientos
+                <FontAwesomeIcon icon = {faLayerGroup}/>
+              </Button>
+            </Link>
           </Wrapper>
         </TextWrapper>
           {/* <Image src = {image} layout = 'fill' objectFit="cover"/> */}
@@ -69,7 +72,7 @@ inset-0
 `
 
 const BackgroundClr = tw.div`
-bg-gray-300/25
+bg-gray-600/25
 inset-0 
 absolute
 `

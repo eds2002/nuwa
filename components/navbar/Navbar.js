@@ -6,11 +6,12 @@ import { faBars } from "@fortawesome/free-solid-svg-icons"
 import { faTimes } from "@fortawesome/free-solid-svg-icons"
 import { useState } from "react"
 import { MobNavbar } from "../mobNavbar/MobNavbar"
+import { useEffect } from "react"
 
 export default function Navbar(){
   const [mobileNav, setMobileNav] = useState(false)
   return (
-    <Container className = "bg-white/5 backdrop-blur-sm">
+    <Container className = "backdrop-blur-sm bg-gray-500/25">
       <Main className = "headingClr">
         <Nav>
           <Left>
@@ -138,7 +139,7 @@ top-0
 bottom-0
 right-0
 z-[999999999999]
-h-20
+h-16
 w-full
 mx-auto
 `
@@ -164,11 +165,6 @@ font-bold
 cursor-pointer
 hover:text-gray-400
 transition
-`
-
-const Links = tw.ul`
-flex
-text-sm
 `
 
 const LinkName = tw.a`

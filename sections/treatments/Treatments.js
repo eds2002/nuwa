@@ -8,6 +8,7 @@ import { faLayerGroup } from "@fortawesome/free-solid-svg-icons"
 import { faCalendarAlt, faCaretDown } from "@fortawesome/free-solid-svg-icons"
 
 export default function Treatments({textHidden, limit, treatments}) {
+  console.log(treatments)
   return (
     <Container>
       <SectionText textHidden = {textHidden}>
@@ -38,9 +39,6 @@ export default function Treatments({textHidden, limit, treatments}) {
                           <FontAwesomeIcon icon = {faCalendarAlt}/>
                         </Appointment>
                       </Link>
-                      <Link href = "/tratamientos/${treatmentName}">
-                        <LearnMore>Aprende Más</LearnMore>
-                      </Link>
                     </ButtonsWrapper>
                   </FeatureText>
                   {/* <p>{featureIdx % 2 === 0 ? 'true': 'false'}</p> */}
@@ -65,17 +63,23 @@ export default function Treatments({textHidden, limit, treatments}) {
                   <FeatureH3>{treatment.treatmentName}</FeatureH3>
                   <FeatureP>{treatment.shortTreatmentDesc}</FeatureP>
                   <ButtonsWrapper>
-                      <Link href = {`/tratamientos/${treatmentName}`}>
-                        <Appointment>Sacar Cita</Appointment>
-                      </Link>
-                      <Link href = "/tratamientos/${treatmentName}">
-                        <LearnMore>Aprende Más</LearnMore>
+                      <Link href = {`/tratamientos/${string_to_slug(treatment.treatmentName)}`}>
+                        <Appointment className = "primaryBtn">
+                          Sacar Cita
+                          <FontAwesomeIcon icon = {faCalendarAlt}/>
+                        </Appointment>
                       </Link>
                     </ButtonsWrapper>
                 </FeatureText>
                 <FeatureImgContainer position = {featureIdx % 2 === 0 ? 'true' : 'false'}>
                   <FeatureImgWrapper>
-                    <FeatureImg src={treatment.treatmentImage.asset?._ref} alt={treatment.treatmentImage.alt} />
+                    {treatment.treatmentImages != undefined ? 
+                      <Link href = {`/tratamientos/${string_to_slug(treatment.treatmentName)}`}>
+                        <FeatureImg src={urlFor(treatment.treatmentImages.treatmentImage1.asset._ref)} alt={treatment.treatmentImage?.alt} />
+                      </Link>
+                      :
+                      <FeatureImg src={"https://images.pexels.com/photos/9496596/pexels-photo-9496596.jpeg?cs=srgb&dl=pexels-brett-jordan-9496596.jpg&fm=jpg"} alt="Error" />
+                    }
                   </FeatureImgWrapper>
                 </FeatureImgContainer>
               </FeatureContainer>
@@ -167,11 +171,11 @@ flex flex-col-reverse lg:grid lg:grid-cols-12 lg:gap-x-8 lg:items-center
 `
 
 const Features = tw.div`
-mt-16 space-y-16
+space-y-16
 `
 
 const SectionText = styled.div`
-${tw`max-w-3xl mx-auto text-center`}
+${tw`max-w-3xl mx-auto mb-16 text-center`}
 ${({textHidden}) => textHidden && tw`hidden`}
 `
 

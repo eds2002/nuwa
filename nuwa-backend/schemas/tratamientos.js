@@ -28,10 +28,27 @@ export default {
       of: [{type: 'block'}]
     },
     {
-      title: 'Lista de Beneficios',
-      name: 'benefits',
+      title:'Lista de Beneficios',
+      name:'benefits',  
       type: 'array',
-      of: [{type: 'string'}]
+      of: [
+        {
+          title: 'Beneficio',
+          type: 'object',
+          fields: [
+            {
+              title: 'Título de beneficio',
+              name: 'benefitTitle',
+              type: 'string'
+            },
+            {
+              title:'Descripción del beneficio',
+              name:'benefitDesc',
+              type:'string'
+            }
+          ]
+        }
+      ],
     },
     {
       title: 'Imagenes de Tratamiento',
