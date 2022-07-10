@@ -16,9 +16,9 @@ export default function Footer(){
       <Main>
         <Grid>
           <CompanyInfo>
-            <div>
-              Nüwa // Logo
-            </div>
+            <Logo>
+              Nüwa
+            </Logo>
             <Slogan>
               Especialistas en tratamientos faciales y corporales. Trabajamos para resaltar tu belleza.
             </Slogan>
@@ -32,14 +32,8 @@ export default function Footer(){
               <Icon>
                 <FontAwesomeIcon icon = {faEnvelope}/>
               </Icon>
-              <a href = "mailto:nuwainnovacionestetica@gmail.com">nuwainnovacionestetica@gmail.com</a>
+              <a href = "mailto:nuwainnovacionestetica@gmail.com" >nuwainnovacionestetica@gmail.com</a>
             </Email>
-            <Location>
-              <Icon>
-                <FontAwesomeIcon icon = {faMapPin}/>
-              </Icon>
-              <a href = "https://www.google.com/maps/place/C.C.+LOS+DELFINES/@-12.0311659,-77.0874801,17z/data=!3m1!4b1!4m5!3m4!1s0x9105ceb9f672c5bd:0x400b89e662a7fd51!8m2!3d-12.0311659!4d-77.0852914" target="_blank">Av Perú 3469, "Galería los Delfines", segundo nivel Nro 58-59-60-61 , Lima, Peru</a>
-            </Location>
           </CompanyInfo>
           <LinkHeadings>
             <GridColOne>
@@ -48,7 +42,7 @@ export default function Footer(){
                 <LinkList role="list">
                   {navigation.solutions.map((item) => (
                     <li key={item.name}>
-                      <a href={item.href} className="text-base text-gray-500 hover:text-gray-900">
+                      <a href={item.href} className="text-base text-gray-200 transition hover:text-gray-300">
                         {item.name}
                       </a>
                     </li>
@@ -60,7 +54,7 @@ export default function Footer(){
                 <LinkList role="list" className="mt-4 space-y-4">
                   {navigation.support.map((item) => (
                     <li key={item.name}>
-                      <a href={item.href} className="text-base text-gray-500 hover:text-gray-900">
+                      <a href={item.href} className="text-base text-gray-200 transition hover:text-gray-300">
                         {item.name}
                       </a>
                     </li>
@@ -74,7 +68,7 @@ export default function Footer(){
                 <LinkList role="list" className="mt-4 space-y-4">
                   {navigation.company.map((item) => (
                     <li key={item.name}>
-                      <a href={item.href} className="text-base text-gray-500 hover:text-gray-900">
+                      <a href={item.href} className="text-base text-gray-200 transition hover:text-gray-300">
                         {item.name}
                       </a>
                     </li>
@@ -86,7 +80,7 @@ export default function Footer(){
                 <LinkList role="list" className="mt-4 space-y-4">
                   {navigation.legal.map((item) => (
                     <li key={item.name}>
-                      <a href={item.href} className="text-base text-gray-500 hover:text-gray-900">
+                      <a href={item.href} className="text-base text-gray-200 transition hover:text-gray-300">
                         {item.name}
                       </a>
                     </li>
@@ -104,30 +98,36 @@ export default function Footer(){
   )
 }
 
+const Logo = tw.p`
+text-4xl
+text-white
+font-bold
+`
+
 const Icon = tw.span``
 
 const Number = tw.p`
 mt-3
 text-sm
 flex items-center justify-start gap-x-3
-text-gray-300
-hover:text-gray-100
+text-gray-100
+hover:text-gray-300
 transition
 `
 const Email = tw.p`
 mt-3
 text-sm
 flex items-center justify-start gap-x-3
-text-gray-300
-hover:text-gray-100
+text-gray-100
+hover:text-gray-300
 transition
 `
 const Location = tw.p`
 mt-3
 text-sm
 flex items-center justify-start gap-x-3
-text-gray-300
-hover:text-gray-100
+text-gray-100
+hover:text-gray-300
 transition
 max-w-xs
 `
@@ -137,11 +137,11 @@ sr-only
 `
 
 const CopyrightInfo = tw.p`
-text-base text-gray-400 xl:text-center
+text-base text-gray-200 xl:text-center
 `
 
 const Copyright = tw.div`
-pt-8 mt-12 border-t border-gray-200
+mt-12 
 `
 
 const Legal = tw.div`
@@ -163,7 +163,7 @@ mt-4 space-y-4
 `
 
 const HeadingName = tw.h3`
-text-sm font-semibold tracking-wider text-gray-300 uppercase
+text-sm font-semibold  text-white uppercase
 `
 
 const Solutions = tw.div``
@@ -181,7 +181,7 @@ flex space-x-6
 `
 
 const Slogan = tw.p`
-text-base text-gray-200
+text-base text-gray-100
 `
 const Container = tw.footer`
 bg-[#BCBCC2]

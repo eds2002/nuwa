@@ -1,13 +1,16 @@
 import Link from "next/link"
-import tw from "twin.macro"
+import tw, {styled, css}from "twin.macro"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFacebookF, faInstagram } from "@fortawesome/free-brands-svg-icons"
 import { faBars } from "@fortawesome/free-solid-svg-icons"
 import { faTimes } from "@fortawesome/free-solid-svg-icons"
+import { useState } from "react"
+import { MobNavbar } from "../mobNavbar/MobNavbar"
 
 export default function Navbar(){
+  const [mobileNav, setMobileNav] = useState(false)
   return (
-    <Container>
+    <Container className = "bg-white/5 backdrop-blur-sm">
       <Main className = "headingClr">
         <Nav>
           <Left>
@@ -35,86 +38,45 @@ export default function Navbar(){
                 <LinkName>Contacto</LinkName>
               </Link>
             </ContactButton>
-            <Hamburger><FontAwesomeIcon icon = {faBars}/></Hamburger>
+            <HamburgerContainer>
+              <Hamburger onClick = {()=>setMobileNav(!mobileNav)} enableNav = {mobileNav} className = {mobileNav ? `bg-gray-400/25 transition` : `opacity-100 transition`}>
+                  <Line top/>
+                  <Line mid/>
+                  <Line bottom/>
+                  {mobileNav && (
+                    <AnimationOverlay mobileNav/>
+                  )}
+              </Hamburger>
+              <MobNavbar active = {mobileNav} setMobileNav = {setMobileNav}/>
+            </HamburgerContainer>
           </Right>
         </Nav>
-        {/* <MobileNav>
-          <Panel>
-            <Top>
-              <Link href = "#">
-                <MobileLogo>Nüwa</MobileLogo>
-              </Link>
-              <CloseButton><FontAwesomeIcon icon = {faTimes}/></CloseButton>
-            </Top>
-            <MiddleMobile>
-              <Link href = "#">
-                <MobileLink active = "active">Inicio</MobileLink>
-              </Link>
-              <Link href = "#">
-                <MobileLink>Tratamientos</MobileLink>
-              </Link>
-              <Link href = "#">
-                <MobileLink>Contacto</MobileLink>
-              </Link>
-              <Link href = "#">
-                <MobileLink>Ayuda</MobileLink>
-              </Link>
-            </MiddleMobile>
-          </Panel>
-        </MobileNav> */}
       </Main>
     </Container>
   )
 }
 
-const MiddleMobile = tw.div`
-py-5
-flex flex-col
-gap-y-3
+const AnimationOverlay = tw.div`
+absolute inset-0 rounded-full bg-gray-400/25 animate-ping pointer-events-none
 `
 
-const MobileLink = tw.a`
-text-black
-text-2xl
-font-bold
-py-2
-rounded-md
-px-4
-cursor-pointer
-hover:text-white
+const HamburgerContainer = tw.div`
+relative
 `
 
-const CloseButton = tw.span`
-text-xl
-text-gray-400
-`
-const MobileLogo = tw.p`
-text-xl
-font-bold
-`
+const Line = styled.div`
+${tw`
+w-[25px]
+h-[3px]
+my-0.5
+rounded-full
+bg-white
+transition
+`}
 
-const Top = tw.div`
-text-center
-flex justify-between items-center
-px-4
-py-5
-`
-
-const Panel = tw.div`
-sm:hidden
-absolute
-right-0
-w-[50vw]
-shadow-xl
-bg-[#F6ECE3]
-h-full
-p-4
-`
-
-const MobileNav = tw.div`
-fixed inset-0
-bg-black/50
-sm:hidden
+${({top})=>top && (tw`w-[25px] block`)}
+${({mid})=>mid && (tw`w-[20px] block`)}
+${({bottom})=>bottom && (tw`w-[15px] block`)}
 `
 
 const ContactButton = tw.div`
@@ -124,13 +86,20 @@ sm:block
 
 const Hamburger = tw.div`
 text-2xl
-px-2
-ml-5
 rounded-full
 hover:bg-white/10
 hover:text-gray-400
+active:bg-gray-500/10
 cursor-pointer
 transition
+z-10
+flex
+items-center
+justify-center
+flex-col
+w-[40px]
+h-[40px]
+relative
 `
 
 const SocialImage = tw.span`
@@ -163,7 +132,7 @@ h-full
 `
 
 const Container = tw.div`
-absolute
+fixed
 top-0
 bottom-0
 right-0
@@ -217,6 +186,7 @@ items-center
 sm:justify-center
 justify-start
 h-full
+z-[99999999]
 `
 
 

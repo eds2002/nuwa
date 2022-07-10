@@ -163,10 +163,10 @@ z-[9999]
 const H1 = tw.h1`
 text-6xl
 font-semibold
-text-gray-900
+text-white
 `
 const P = styled.p`
 ${tw`mt-2 text-base text-gray-700`}
 ${({textSmall})=> textSmall && (tw`text-sm`)}
-${({lightGray})=> lightGray && (tw`text-xl text-gray-800`)}
+${({lightGray})=> lightGray && (tw`text-xl text-gray-100`)}
 `
