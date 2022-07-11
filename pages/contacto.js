@@ -18,7 +18,7 @@ export default function Contacto({locations}){
         <BackgroundImage>
           <BackgroundOverlay/>
           <ImageWrapper>
-            <Image src = {contactImage} layout = 'fill' css = {[tw`object-cover`]}/>
+            <Image src = {contactImage} layout = 'fill' css = {[tw`object-cover`]} priority/>
           </ImageWrapper>
         </BackgroundImage>
       </NavigationWrapper>

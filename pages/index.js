@@ -7,11 +7,11 @@ import {sanityClient} from '../sanity'
 export default function Home({treatments}) {
   return (
     <>
-      <Hero/>
-      <About/>
-      <Treatments limit = {3} treatments = {treatments}/>
-      <Cta/>
-      <Footer/>
+    <Hero/>
+    <About/>
+    <Treatments limit = {3} treatments = {treatments}/>
+    <Cta/>
+    <Footer/>
     </>
   )
 }
@@ -23,7 +23,7 @@ export const getServerSideProps = async () =>{
   if(!treatments.length){
     return {
       props:{
-        treatments: [],
+        treatments: null,
       }
     }
   }else{

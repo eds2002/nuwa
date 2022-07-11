@@ -90,7 +90,7 @@ export default function PageTreatment({treatment,allTreatments, locations}){
       </>
       }
     </Section>
-    <Footer/>
+    <Footer treatments = {allTreatments} limit = {5}/>
     </>
   )
 }
@@ -292,8 +292,13 @@ export async function getServerSideProps({ params }) {
   const requestedTreatment = treatments.findIndex(treatment => treatment?.slug?.current === params.treatment)
 
   if(requestedTreatment === -1){
-    // TODO, requested treatment doesnt exist
-    return{props:{treatment:null}}
+    // TODO, requested treatment doesnt exist, go to 404
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/404"
+      }
+    }
   }else{
     // TODO, requested page exists
     console.log('exists bro')

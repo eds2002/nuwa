@@ -18,7 +18,7 @@ export default function TreatmentsPage({treatments}){
         <BackgroundImage>
           <BackgroundOverlay/>
           <ImageWrapper>
-            <Image src = {treatmentImage} layout = 'fill' css = {[tw`object-cover`]}/>
+            <Image src = {treatmentImage} layout = 'fill' css = {[tw`object-cover`]} priority/>
           </ImageWrapper>
         </BackgroundImage>
       </NavigationWrapper>

@@ -15,7 +15,7 @@ export function MobNavbar({active, setMobileNav}){
       <Link href = "/tratamientos">
         <PageLink onClick = {()=>handleClick()}>Tratamientos</PageLink>
       </Link>
-      <Link href = "/contacto">
+      <Link href = "/blog">
         <PageLink onClick = {()=>handleClick()}>Sobre Nosotras</PageLink>
       </Link>
       <Link href = "/contacto">
@@ -45,8 +45,8 @@ pt-10
 const PageLink = tw.a`
 cursor-pointer
 text-white
-text-4xl
-font-semibold
+text-5xl
+font-light
 hover:text-gray-200
 transition
 `

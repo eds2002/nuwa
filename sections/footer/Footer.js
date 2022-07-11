@@ -6,8 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPhone } from "@fortawesome/free-solid-svg-icons"
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons"
 import { faMapPin } from "@fortawesome/free-solid-svg-icons"
+import { string_to_slug } from "../../utils/slugify"
 
-export default function Footer(){
+export default function Footer({treatments}){
   return (
     <Container aria-labelledby="footer-heading">
       <SR>
@@ -16,12 +17,8 @@ export default function Footer(){
       <Main>
         <Grid>
           <CompanyInfo>
-            <Logo>
-              Nüwa
-            </Logo>
-            <Slogan>
-              Especialistas en tratamientos faciales y corporales. Trabajamos para resaltar tu belleza.
-            </Slogan>
+            <Logo>Nüwa</Logo>
+            <Slogan>Especialistas en tratamientos faciales y corporales. Trabajamos para resaltar tu belleza.</Slogan>
             <Number>
               <Icon>
                 <FontAwesomeIcon icon = {faPhone}/>
@@ -36,58 +33,48 @@ export default function Footer(){
             </Email>
           </CompanyInfo>
           <LinkHeadings>
-            <GridColOne>
-              <Solutions>
-                <HeadingName>Tratamientos</HeadingName>
+            <AllTreatments>
+              <HeadingName>Navegación</HeadingName>
                 <LinkList role="list">
-                  {navigation.solutions.map((item) => (
-                    <li key={item.name}>
-                      <a href={item.href} className="text-base text-gray-200 transition hover:text-gray-300">
-                        {item.name}
-                      </a>
-                    </li>
+                  {navigation.navigate.map((item)=>(
+                    <List key={item.name}>
+                      <Link href = {item.href}>
+                        <Anchor className="text-base text-gray-200 transition hover:text-gray-300">
+                          {item.name}
+                        </Anchor>
+                      </Link>
+                    </List>
                   ))}
                 </LinkList>
-              </Solutions>
-              <Support>
-                <HeadingName className="text-sm font-semibold tracking-wider text-gray-400 uppercase">Support</HeadingName>
-                <LinkList role="list" className="mt-4 space-y-4">
-                  {navigation.support.map((item) => (
-                    <li key={item.name}>
-                      <a href={item.href} className="text-base text-gray-200 transition hover:text-gray-300">
+            </AllTreatments>
+            <Support>
+              <HeadingName>Apoyo</HeadingName>
+              <LinkList>
+                {navigation.support.map((item) => (
+                  <List key={item.name}>
+                    <Link href = {item.href}>
+                      <Anchor className="text-base text-gray-200 transition hover:text-gray-300">
                         {item.name}
-                      </a>
-                    </li>
-                  ))}
-                </LinkList>
-              </Support>
-            </GridColOne>
-            <GridColTwo>
-              <Company>
-                <HeadingName className="text-sm font-semibold tracking-wider text-gray-400 uppercase">Company</HeadingName>
-                <LinkList role="list" className="mt-4 space-y-4">
-                  {navigation.company.map((item) => (
-                    <li key={item.name}>
-                      <a href={item.href} className="text-base text-gray-200 transition hover:text-gray-300">
+                      </Anchor>
+                    </Link>
+                  </List>
+                ))}
+              </LinkList>
+            </Support>
+            <Company>
+              <HeadingName>Sociales</HeadingName>
+              <LinkList >
+                {navigation.socials.map((item) => (
+                  <List key={item.name}>
+                    <Link href = {item.href}>
+                      <Anchor className="text-base text-gray-200 transition hover:text-gray-300">
                         {item.name}
-                      </a>
-                    </li>
-                  ))}
-                </LinkList>
-              </Company>
-              <Legal>
-                <HeadingName className="text-sm font-semibold tracking-wider text-gray-400 uppercase">Legal</HeadingName>
-                <LinkList role="list" className="mt-4 space-y-4">
-                  {navigation.legal.map((item) => (
-                    <li key={item.name}>
-                      <a href={item.href} className="text-base text-gray-200 transition hover:text-gray-300">
-                        {item.name}
-                      </a>
-                    </li>
-                  ))}
-                </LinkList>
-              </Legal>
-            </GridColTwo>
+                      </Anchor>
+                    </Link>
+                  </List>
+                ))}
+              </LinkList>
+            </Company>
           </LinkHeadings>
         </Grid>
         <Copyright>
@@ -97,6 +84,35 @@ export default function Footer(){
     </Container>
   )
 }
+
+export const getStaticProps = async () =>{
+  const query = '*[ _type == "tratamientos"]';
+  const treatments = await sanityClient.fetch(query)
+
+  if(!treatments.length){
+    return {
+      props:{
+        treatments: [],
+      }
+    }
+  }else{
+    return {
+      props:{
+        treatments:treatments
+      }
+    }
+  }
+}
+
+const Anchor = tw.div`
+text-white
+hover:text-gray-200
+cursor-pointer
+transition
+`
+
+const List = tw.li``
+
 
 const Logo = tw.p`
 text-4xl
@@ -155,7 +171,7 @@ md:grid md:grid-cols-2 md:gap-8
 `
 
 const Support = tw.div`
-mt-12 md:mt-0
+h-full
 `
 
 const LinkList = tw.ul`
@@ -163,17 +179,19 @@ mt-4 space-y-4
 `
 
 const HeadingName = tw.h3`
-text-sm font-semibold  text-white uppercase
+text-sm font-semibold  text-[#63463A] uppercase
 `
 
-const Solutions = tw.div``
+const AllTreatments = tw.div`
+h-full
+`
 
 const GridColOne = tw.div`
 md:grid md:grid-cols-2 md:gap-8
 `
 
 const LinkHeadings = tw.div`
-grid grid-cols-2 gap-8 mt-12 xl:mt-0 xl:col-span-2
+grid grid-cols-2 md:grid-cols-3 gap-8 mt-12 xl:mt-0 xl:col-span-2
 `
 
 const SocialLinks = tw.div`

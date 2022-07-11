@@ -8,7 +8,6 @@ import { faLayerGroup } from "@fortawesome/free-solid-svg-icons"
 import { faCalendarAlt, faCaretDown } from "@fortawesome/free-solid-svg-icons"
 
 export default function Treatments({textHidden, limit, treatments}) {
-  console.log(treatments)
   return (
     <Container>
       <SectionText textHidden = {textHidden}>

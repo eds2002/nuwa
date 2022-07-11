@@ -1,5 +1,7 @@
 import React from 'react'
 import tw from 'twin.macro'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPeopleGroup } from '@fortawesome/free-solid-svg-icons'
 
 export default function About(){
   return (
@@ -8,7 +10,10 @@ export default function About(){
         <TextWrapper>
           <Heading>Sobre Nosotras</Heading>
           <Paragraph>Especialistas en tratamientos faciales y corporales. Trabajamos para resaltar tu belleza.</Paragraph>
-          <Button className = "primaryBtn">Aprende más</Button>
+          <Button className = "primaryBtn">
+            Aprende más
+            <FontAwesomeIcon icon = {faPeopleGroup}/>
+          </Button>
         </TextWrapper>
       </Main>
     </Container>
