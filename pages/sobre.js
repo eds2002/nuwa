@@ -20,7 +20,7 @@ export default function Sobre({aboutData}){
             <Heading>Especialistas en tratamientos faciales y corporales. Trabajamos para resaltar tu belleza.</Heading>
             <ButtonsWrapper>
               <Link href = "/tratamientos">
-                <ViewTreatmentsBtn className = "primaryBtn">
+                <ViewTreatmentsBtn className = "primaryBtn ">
                   Ver Tratamientos
                   <FontAwesomeIcon icon = {faLayerGroup}/>
                 </ViewTreatmentsBtn>
@@ -287,7 +287,11 @@ const ViewTreatmentsBtn = tw.button``
 const ButtonsWrapper = tw.div`
 flex
 items-center justify-center
-gap-x-3
+gap-3
+px-4
+sm:flex-row
+flex-col
+w-full
 `
 const Heading = tw.h2`
 lg:max-w-5xl
