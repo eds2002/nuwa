@@ -94,7 +94,7 @@ font-medium
 `
 
 const ContactList = styled.div`
-${tw`flex flex-col mt-10 sm:flex-row`}
+${tw`flex flex-col h-full mt-10 sm:flex-row`}
 ${({borderB})=>borderB && (tw`border-b-[1px] border-b-[#d0bfb0]`)}
 `
 

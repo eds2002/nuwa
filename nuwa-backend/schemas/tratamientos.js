@@ -11,7 +11,7 @@ export default {
     {
       name:'slug',
       type:'slug',
-      title:'Slug',
+      title:'Slug (Importante, haga clic en el botón)',
       options:{
         source:'treatmentName'
       }
@@ -28,7 +28,7 @@ export default {
       of: [{type: 'block'}]
     },
     {
-      title:'Lista de Beneficios',
+      title:'Lista de Beneficios (Mínimo 3)',
       name:'benefits',  
       type: 'array',
       of: [

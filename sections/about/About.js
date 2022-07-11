@@ -2,6 +2,7 @@ import React from 'react'
 import tw from 'twin.macro'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPeopleGroup } from '@fortawesome/free-solid-svg-icons'
+import Link from 'next/link'
 
 export default function About(){
   return (
@@ -10,10 +11,12 @@ export default function About(){
         <TextWrapper>
           <Heading>Sobre Nosotras</Heading>
           <Paragraph>Especialistas en tratamientos faciales y corporales. Trabajamos para resaltar tu belleza.</Paragraph>
-          <Button className = "primaryBtn">
-            Aprende más
-            <FontAwesomeIcon icon = {faPeopleGroup}/>
-          </Button>
+          <Link href = "/sobre">
+            <Button className = "primaryBtn">
+              Aprende más
+              <FontAwesomeIcon icon = {faPeopleGroup}/>
+            </Button>
+          </Link>
         </TextWrapper>
       </Main>
     </Container>
@@ -39,9 +42,10 @@ flex items-center justify-center flex-col
 `
 
 const Heading = tw.h3`
-text-sm
-font-bold
 text-[#C78F6D]
+uppercase
+text-xs
+font-medium
 `
 
 const Paragraph = tw.p`

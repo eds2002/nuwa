@@ -8,12 +8,6 @@ import styled from 'styled-components'
 import Input from "../input/Input"
 import emailjs from 'emailjs-com'
 
-const people = [
-  { id: 1, name: 'Sede Comas | Av. Universitaria, 2do piso (Ref. Metro Belaúnde)' },
-  { id: 2, name: 'Sede La Victoria | Centro Comercial' },
-  { id: 3, name: 'Sede San Martin De Porres' },
-]
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
@@ -115,7 +109,7 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
     e.preventDefault();
     setConfirming(true)
     
-    emailjs.sendForm('service_q6wwnzf', 'template_r3mwlpf', form.current, 'Z37lQbTvaUroNGPYe')
+    emailjs.sendForm(process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID, process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID, form.current, process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY)
       .then((result) => {
         console.log(result)
         changeModalStatus(false)
@@ -124,6 +118,7 @@ export default function Appointment({changeModalStatus, allTreatments, currentTr
           console.log(error.text);
       });
   };
+
 
 
   return (

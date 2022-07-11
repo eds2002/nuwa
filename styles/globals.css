@@ -36,6 +36,9 @@ input:invalid[focused="true"]{
 .primaryBtn{
   @apply py-3 text-sm bg-[#C78F6D] rounded-md text-white font-medium w-[200px] transition hover:bg-[#caa385] flex items-center justify-center gap-x-2 cursor-pointer
 }
+.secondaryBtn{
+  @apply py-3 text-sm bg-gray-500/50 backdrop-blur-sm rounded-md text-white font-medium w-[200px] transition hover:bg-gray-500/75 flex items-center justify-center gap-x-2 cursor-pointer
+}
 
 .headingClr{
   @apply text-white

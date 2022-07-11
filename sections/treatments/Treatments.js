@@ -152,7 +152,7 @@ ${({position})=> position === 'true' ? tw`lg:col-start-6 xl:col-start-5` : tw`lg
 `
 
 const FeatureH3 = tw.h3`
-text-lg font-medium text-gray-900
+text-lg font-semibold text-gray-700
 `
 
 const FeatureP = tw.p`
@@ -183,7 +183,10 @@ max-w-2xl mx-auto py-24 px-4 sm:px-6 sm:py-32 lg:max-w-7xl lg:px-8
 `
 
 const Heading = tw.p`
-text-sm font-semibold text-[#C78F6D]
+text-[#C78F6D]
+uppercase
+text-xs
+font-medium
 `
 
 const Paragraph = tw.p`

@@ -78,7 +78,7 @@ export default function Footer({treatments}){
           </LinkHeadings>
         </Grid>
         <Copyright>
-          <CopyrightInfo>&copy; 2022 Nuwa, Inc. All rights reserved.</CopyrightInfo>
+          <CopyrightInfo>&copy; 2022 Nüwa, Inc. All rights reserved.</CopyrightInfo>
         </Copyright>
       </Main>
     </Container>
