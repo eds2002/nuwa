@@ -42,7 +42,7 @@ export default function Sobre({aboutData}){
             </ButtonsWrapper>
           </TextWrapper>
           <BgOverlay/>
-          <Image src = {aboutImage} layout = 'fill' className = "object-cover"/>
+          <Image src = {aboutImage} layout = 'fill' className = "object-cover" priority/>
         </HeaderImage>
       </Header>
       <About>
