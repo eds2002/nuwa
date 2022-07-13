@@ -12,15 +12,17 @@ import Head from "next/head";
 export default function PageTreatment({treatment,allTreatments, locations}){
   const [modal,setModal] = useState(false)
 
-  console.log(treatment)
-
   function changeModalStatus(state){
     setModal(state)
   }
-
   return (
     <>
     <Head>
+      <meta charSet='UTF-8'/>
+      <meta httpEquiv='X-UA-Compatible' content='ie=edge'/>
+      <title>{treatment.treatmentName} - Nüwa</title>
+      <meta name = "description" content = "Aprende más sobre nosotras y cómo empezamos!"/>
+      <meta name = "keywords" content = 'NUWA, ESTETICA, BELLEZA'/>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"></meta>
     </Head>
     <Section className = "overflow-hidden">

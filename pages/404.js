@@ -2,23 +2,33 @@ import { Navbar } from "../components"
 import { Footer } from "../sections"
 import tw from "twin.macro"
 import Link from "next/link"
+import Head from "next/head"
 
 
 const Error = () => {
   return (
-    <Container>
-    <Navbar/>
-    <Content>
-      <Logo>Nüwa</Logo>
-      <ErrorText>404 Error</ErrorText>
-      <Heading>Página no encontrada</Heading>
-      <Paragraph>Lo sentimos, no pudimos encontrar la página que estás buscando.</Paragraph>
-      <Link href = "/">
-        <Anchor>Regresar a casa</Anchor>
-      </Link>
-    </Content>
-    <Footer/>
-    </Container>
+    <>
+      <Head>
+        <meta charSet='UTF-8'/>
+        <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0'/>
+        <meta httpEquiv='X-UA-Compatible' content='ie=edge'/>
+        <title>404-Nüwa</title>
+        <meta name = "keywords" content = 'NUWA, ESTETICA, BELLEZA'/>
+      </Head>
+      <Container>
+      <Navbar/>
+      <Content>
+        <Logo>Nüwa</Logo>
+        <ErrorText>404 Error</ErrorText>
+        <Heading>Página no encontrada</Heading>
+        <Paragraph>Lo sentimos, no pudimos encontrar la página que estás buscando.</Paragraph>
+        <Link href = "/">
+          <Anchor>Regresar a casa</Anchor>
+        </Link>
+      </Content>
+      <Footer/>
+      </Container>
+    </>
   )
 }
 

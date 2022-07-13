@@ -5,10 +5,19 @@ import contactImage from '../assets/contactImage.webp'
 import Image from 'next/image'
 import { sanityClient } from '../sanity'
 import { Footer } from '../sections'
+import Head from "next/head"
 
 export default function Contacto({locations}){
   return (
     <>
+      <Head>
+        <meta charSet='UTF-8'/>
+        <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0'/>
+        <meta httpEquiv='X-UA-Compatible' content='ie=edge'/>
+        <title>Contacto - Nüwa</title>
+        <meta name = "description" content = "Estamos aquí para ayudarte."/>
+        <meta name = "keywords" content = 'NUWA, ESTETICA, BELLEZA'/>
+      </Head>
       <NavigationWrapper>
         <Navbar/>
         <TextWrapper>

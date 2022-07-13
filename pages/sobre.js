@@ -7,12 +7,20 @@ import { faLayerGroup, faMessage } from "@fortawesome/free-solid-svg-icons"
 import {sanityClient} from '../sanity'
 import { Cta, Footer } from "../sections"
 import Link from "next/link"
+import Head from "next/head"
 
 
 export default function Sobre({aboutData}){
-  console.log(aboutData)
   return (
     <Main>
+      <Head>
+        <meta charSet='UTF-8'/>
+        <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0'/>
+        <meta httpEquiv='X-UA-Compatible' content='ie=edge'/>
+        <title>Sobre Nosotras- Nüwa</title>
+        <meta name = "description" content = "Aprende más sobre nosotras y cómo empezamos!"/>
+        <meta name = "keywords" content = 'NUWA, ESTETICA, BELLEZA'/>
+      </Head>
       <Navbar/>
       <Header>
         <HeaderImage>
